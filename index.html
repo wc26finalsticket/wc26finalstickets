@@ -421,6 +421,9 @@ svg.stadium-map {
 .minimap-title {
   font-size: 12px;
   font-weight: 800;
+  color: var(--fifa-dark);
+  margin-bottom: 8px;
+  text-transform: uppercase;
 }
 
 .minimap-note-box {
@@ -436,10 +439,6 @@ svg.stadium-map {
   font-size: 12px;
   color: #475569;
   line-height: 1.5;
-}
-  color: var(--fifa-dark);
-  margin-bottom: 8px;
-  text-transform: uppercase;
 }
 
 .minimap {
@@ -844,8 +843,25 @@ body.light-theme .order-total {
     width: 100%;
   }
 
+  .steps-bar {
+    padding: 0 12px;
+  }
+
+  .steps {
+    min-width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .step {
+    flex: 1 1 160px;
+    justify-content: center;
+    text-align: center;
+  }
+
   .map-shell {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .stadium-zoom {
@@ -887,11 +903,17 @@ body.light-theme .order-total {
   .logo-sub { font-size: 9px; }
 
   .match-banner {
-    padding: 16px 12px;
-    gap: 12px;
+    padding: 18px 16px;
+    gap: 16px;
     flex-wrap: wrap;
     justify-content: center;
-    text-align: left;
+    text-align: center;
+    align-items: center;
+  }
+
+  .match-banner > * {
+    flex: 1 1 100%;
+    min-width: 0;
   }
 
   .team-info,
@@ -900,31 +922,45 @@ body.light-theme .order-total {
   }
 
   .match-center {
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
   }
 
-  .team-flag { font-size: 28px; }
-  .team-name { font-size: 15px; }
-  .vs-text { font-size: 26px; }
-  .match-date, .match-venue { font-size: 12px; }
+  .match-badge {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+
+  .team-flag { font-size: 32px; }
+  .team-name { font-size: 16px; }
+  .vs-text { font-size: 24px; }
+  .match-date,
+  .match-venue { font-size: 12px; }
 
   .match-meta {
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
   }
 
   .match-meta span {
-    width: 100%;
+    width: auto;
   }
 
   .stadium-wrap {
-    padding: 10px;
+    padding: 12px;
+  }
+
+  .map-shell {
+    display: block;
   }
 
   .stadium-zoom {
     min-width: auto;
     width: 100%;
+  }
+
+  .minimap-card {
+    margin-top: 18px;
   }
 
   .trust-row {
@@ -943,6 +979,19 @@ body.light-theme .order-total {
 
   .minimap-note-box {
     padding: 12px 14px;
+  }
+
+  .info-card,
+  .stadium-panel,
+  .main {
+    width: 100%;
+  }
+
+  .cta-btn,
+  .copy-btn,
+  .payment-submit,
+  .payment-cancel {
+    width: 100%;
   }
 
   .toast {
