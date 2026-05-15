@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FIFA World Cup 26™ – Ticket Resale</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --fifa-blue: #004c97;
+  --fifa-dark: #00285a;
+  --fifa-gold: #c8973a;
+  --fifa-light: #f4f6f9;
+  --border: #dde2ea;
+  --text-main: #1a1f2e;
+  --text-muted: #6b7280;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Barlow", sans-serif;
+  background: var(--fifa-light);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+header {
+  background: var(--fifa-dark);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,.35);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-badge {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--fifa-gold), #e8b960);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  font-size: 11px;
+  color: var(--fifa-dark);
+  text-align: center;
+  line-height: 1.15;
+}
+
+.logo-text {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800;
+  color: #fff;
+  font-size: 21px;
+  letter-spacing: 1px;
+}
+
+.logo-sub {
+  display: block;
+  color: var(--fifa-gold);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 8px;
+  padding: 7px 12px;
+}
+
+.timer-display {
+  color: #fff;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.timer-label {
+  font-size: 10px;
+  color: rgba(255,255,255,.55);
+  text-transform: uppercase;
+}
+
+.lang-btn,
+.theme-toggle {
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.75);
+  border: 1px solid rgba(255,255,255,.25);
+  padding: 7px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 18px;
+}
+
+.theme-toggle:hover,
+.lang-btn:hover {
+  background: rgba(255,255,255,.16);
+}
+
+.steps-bar {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  overflow-x: auto;
+}
+
+.steps {
+  display: flex;
+  max-width: 950px;
+  margin: 0 auto;
+  min-width: 650px;
+}
+
+.step {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 12px;
+  opacity: .45;
+}
+
+.step.done { opacity: .75; }
+.step.active { opacity: 1; }
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--border);
+  color: var(--text-muted);
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.step.done .step-num { background: var(--fifa-blue); color: #fff; }
+.step.active .step-num { background: var(--fifa-gold); color: #fff; }
+
+.step-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: var(--text-muted);
+}
+
+.match-banner {
+  background: linear-gradient(135deg, var(--fifa-dark), var(--fifa-blue));
+  color: #fff;
+  padding: 26px 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(20px, 6vw, 50px);
+  text-align: center;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(0,0,0,.22);
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.match-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.match-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #f8fafc;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+}
+
+.world-cup-icon {
+  font-size: 18px;
+}
+
+.match-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.match-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,.8);
+  font-size: 12px;
+}
+
+.meta-icon {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,.16);
+}
+
+.ticker-strip {
+  overflow: hidden;
+  background: rgba(255,255,255,.08);
+  border-top: 1px solid rgba(255,255,255,.12);
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+.ticker-track {
+  display: inline-flex;
+  gap: 18px;
+  padding: 12px 0;
+  animation: tickerMove 24s linear infinite;
+}
+
+.ticker-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  color: #f8fafc;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.ticker-item strong {
+  color: var(--fifa-gold);
+}
+
+@keyframes tickerMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.team-flag { font-size: 42px; }
+.team-name {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+.team-rank, .match-venue { color: rgba(255,255,255,.6); font-size: 11px; }
+.vs-text {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--fifa-gold);
+}
+
+.main {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 20px;
+  align-items: start;
+}
+
+.stadium-panel, .info-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.panel-header, .info-card-header {
+  padding: 15px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--fifa-dark);
+  letter-spacing: .5px;
+}
+
+.zoom-controls { display: flex; gap: 6px; }
+.zoom-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.stadium-wrap {
+  padding: 18px;
+  background: #f8fafc;
+}
+
+.map-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  gap: 18px;
+  align-items: start;
+}
+
+.stadium-svg-container {
+  width: 100%;
+  position: relative;
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #eef2f7;
+}
+
+.stadium-zoom {
+  min-width: 460px;
+  transform-origin: top left;
+  transition: transform .2s ease;
+}
+
+svg.stadium-map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sta-section {
+  cursor: pointer;
+  transition: opacity .15s, filter .15s, stroke .15s;
+}
+
+.sta-section:hover { opacity: .85; filter: brightness(1.12); }
+.sta-section.selected {
+  stroke: var(--fifa-gold);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 6px rgba(200,151,58,.75));
+}
+.sta-section.sold-out { cursor: not-allowed; opacity: .35; }
+
+.section-label {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800;
+  font-size: 9px;
+  fill: rgba(255,255,255,.92);
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.pitch-outer { fill: #1a7a3c; }
+.pitch-markings { fill: none; stroke: rgba(255,255,255,.65); stroke-width: .7; }
+.pitch-label {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  font-size: 11px;
+  fill: rgba(255,255,255,.45);
+  text-anchor: middle;
+  letter-spacing: 3px;
+}
+
+.minimap-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  position: sticky;
+  top: 86px;
+}
+
+.minimap-title {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.minimap-note-box {
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid rgba(100, 116, 139, .16);
+}
+
+.minimap-note {
+  margin: 0;
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.5;
+}
+  color: var(--fifa-dark);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.minimap {
+  width: 100%;
+  border-radius: 8px;
+  background: #0f172a;
+  border: 1px solid #cbd5e1;
+  cursor: pointer;
+}
+
+.mini-section { cursor: pointer; opacity: .88; }
+.mini-section:hover { opacity: 1; }
+.mini-viewport {
+  fill: rgba(255,255,255,.16);
+  stroke: var(--fifa-gold);
+  stroke-width: 4;
+  pointer-events: none;
+}
+
+.legend {
+  display: flex;
+  gap: 13px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+}
+
+.cat-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  border-top: 1px solid var(--border);
+}
+
+.cat-btn {
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.cat-all { background: #eef2f7; color: #111827; }
+.cat-available { background: #fef3c7; color: #92400e; }
+.cat-1 { background: #e8f4fd; color: #0369a1; }
+.cat-2 { background: #f0fdf4; color: #15803d; }
+.cat-3 { background: #fefce8; color: #a16207; }
+.cat-btn.active { background: var(--fifa-dark); color: #fff; }
+.sta-section.highlight-available {
+  filter: drop-shadow(0 0 10px rgba(249,204,36,.9));
+  stroke: var(--fifa-gold);
+  stroke-width: 2;
+}
+.sta-section.highlight-available.sold-out {
+  filter: none;
+}
+
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info-card-body { padding: 16px 18px; }
+
+.section-info-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 24px 0;
+  line-height: 1.5;
+}
+
+.section-info-empty .icon { font-size: 34px; opacity: .5; }
+.section-info-detail { display: none; }
+.section-info-detail.visible { display: block; }
+.hidden { display: none; }
+
+.sec-name {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--fifa-dark);
+}
+
+.sec-cat-badge {
+  display: inline-block;
+  margin: 8px 0 13px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.badge-cat1 { background: #e8f4fd; color: #0369a1; }
+.badge-cat2 { background: #f0fdf4; color: #15803d; }
+.badge-cat3 { background: #fefce8; color: #a16207; }
+
+.sec-detail-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f1f5f9;
+  padding: 8px 0;
+  font-size: 13px;
+}
+
+.sec-detail-key { color: var(--text-muted); }
+.sec-detail-val { font-weight: 700; }
+
+.price-highlight {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--fifa-dark), var(--fifa-blue));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.price-label { color: rgba(255,255,255,.65); font-size: 12px; text-transform: uppercase; }
+.price-per { color: rgba(255,255,255,.45); font-size: 11px; }
+.price-amount {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--fifa-gold);
+}
+
+.qty-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: #fff;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.qty-num {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  min-width: 22px;
+  text-align: center;
+}
+
+.cta-btn {
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px;
+  border: none;
+  border-radius: 9px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--fifa-gold), #e8b960);
+  color: var(--fifa-dark);
+}
+
+.payment-methods {
+  display: none;
+  margin-top: 14px;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+.payment-methods.visible { display: block; }
+
+.pay-title {
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.pay-option {
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.pay-option.active {
+  border-color: #f7931a;
+  background: #fff7ed;
+}
+
+.wallet-box {
+  display: none;
+  margin-top: 10px;
+  background: #0f172a;
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.wallet-box.visible { display: block; }
+
+.wallet-address {
+  word-break: break-all;
+  font-family: monospace;
+  font-size: 12px;
+  background: rgba(255,255,255,.08);
+  padding: 10px;
+  border-radius: 8px;
+  margin: 8px 0;
+}
+
+.copy-btn {
+  width: 100%;
+  border: 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f7931a;
+  color: #111827;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.order-empty {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 12px 0;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 900;
+  color: var(--fifa-dark);
+  border-top: 2px solid var(--fifa-dark);
+  margin-top: 10px;
+  padding-top: 12px;
+}
+
+.trust-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.trust-item {
+  text-align: center;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.trust-icon { font-size: 20px; margin-bottom: 4px; }
+
+.tooltip {
+  position: absolute;
+  background: rgba(0,28,64,.95);
+  color: #fff;
+  border-radius: 7px;
+  padding: 8px 12px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 10;
+  transform: translate(-50%, -120%);
+  display: none;
+  white-space: nowrap;
+}
+
+.toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  background: var(--fifa-dark);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 9px;
+  font-size: 13px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.25);
+  border-left: 4px solid var(--fifa-gold);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: .25s;
+  z-index: 999;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+body.light-theme {
+  background: #f8fafc;
+  color: #111827;
+}
+
+body.light-theme header {
+  background: #ffffff;
+  box-shadow: 0 2px 16px rgba(15,23,42,.08);
+}
+
+body.light-theme .logo-text { color: #111827; }
+body.light-theme .logo-sub { color: #92400e; }
+body.light-theme .header-right .timer {
+  background: rgba(15,23,42,.05);
+  border-color: rgba(15,23,42,.12);
+}
+
+body.light-theme .timer-display { color: #111827; }
+body.light-theme .lang-btn,
+body.light-theme .theme-toggle {
+  color: #111827;
+  background: rgba(15,23,42,.05);
+  border-color: rgba(15,23,42,.12);
+}
+
+body.light-theme .main,
+body.light-theme .stadium-panel,
+body.light-theme .info-card,
+body.light-theme .minimap-card,
+body.light-theme .price-board {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+body.light-theme .match-banner {
+  background: linear-gradient(135deg, #e2e8f0, #dbeafe);
+  color: #0f172a;
+  box-shadow: 0 12px 36px rgba(15,23,42,.12);
+}
+
+body.light-theme .match-badge {
+  background: rgba(15,23,42,.04);
+  color: #0f172a;
+  border-color: rgba(15,23,42,.08);
+}
+
+body.light-theme .match-meta span {
+  color: rgba(15,23,42,.75);
+}
+
+body.light-theme .ticker-strip {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+body.light-theme .ticker-item {
+  background: rgba(15,23,42,.04);
+  border-color: rgba(15,23,42,.08);
+  color: #0f172a;
+}
+
+body.light-theme .minimap-note-box {
+  background: #f8fafc;
+  border-color: rgba(100,116,139,.14);
+}
+
+body.light-theme .order-item,
+body.light-theme .order-total {
+  color: #111827;
+}
+
+@media (max-width: 980px) {
+  .main {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .map-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .stadium-zoom {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .minimap-card {
+    position: static;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .ticker-strip {
+    padding: 10px 12px;
+  }
+
+  .ticker-item {
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  header {
+    height: auto;
+    padding: 12px;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .header-right {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .logo-text { font-size: 18px; }
+  .logo-sub { font-size: 9px; }
+
+  .match-banner {
+    padding: 16px 12px;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: left;
+  }
+
+  .team-info,
+  .match-center {
+    width: 100%;
+  }
+
+  .match-center {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .team-flag { font-size: 28px; }
+  .team-name { font-size: 15px; }
+  .vs-text { font-size: 26px; }
+  .match-date, .match-venue { font-size: 12px; }
+
+  .match-meta {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .match-meta span {
+    width: 100%;
+  }
+
+  .stadium-wrap {
+    padding: 10px;
+  }
+
+  .stadium-zoom {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .trust-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cat-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cat-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .minimap-note-box {
+    padding: 12px 14px;
+  }
+
+  .toast {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+  }
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.92);
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+  color: #f8fafc;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#cookieBanner {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  width: min(92vw, 560px);
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 16px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  z-index: 10005;
+  box-shadow: 0 24px 60px rgba(0,0,0,.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+}
+
+#cookieBanner.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+#cookieBanner p {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+#cookieBanner button {
+  background: var(--fifa-gold);
+  color: var(--fifa-dark);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(200,151,58,.25);
+}
+
+#cookieBanner button:hover {
+  transform: translateY(-1px);
+}
+
+.loader-box,
+.captcha-box {
+  width: min(440px, calc(100% - 36px));
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 28px 30px;
+  text-align: center;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+.spinner {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border: 6px solid rgba(255, 255, 255, 0.16);
+  border-top-color: var(--fifa-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loader-text {
+  font-size: 15px;
+  letter-spacing: 0.35px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.captcha-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.captcha-desc {
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.captcha-question {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+
+.captcha-input-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.captcha-input-row input {
+  width: 138px;
+  min-width: 138px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #0f172a;
+  color: #f8fafc;
+  font-size: 15px;
+}
+
+.captcha-hint {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.payment-proof-box {
+  width: min(480px, calc(100% - 36px));
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 28px 30px;
+  text-align: center;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+.payment-proof-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #f8fafc;
+}
+
+.payment-proof-desc {
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 24px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.form-label {
+  display: block;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.file-upload-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.file-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.file-upload-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px dashed rgba(200, 151, 58, 0.5);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+}
+
+.file-upload-label:hover {
+  border-color: var(--fifa-gold);
+  background: rgba(200, 151, 58, 0.08);
+}
+
+.file-name {
+  color: var(--fifa-gold);
+  font-weight: 600;
+  word-break: break-all;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.text-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(15, 23, 42, 0.6);
+  color: #f8fafc;
+  font-size: 14px;
+  font-family: "Barlow Mono", monospace;
+}
+
+.text-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--fifa-gold);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.payment-form-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.payment-form-buttons button {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 14px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.payment-submit {
+  background: linear-gradient(135deg, var(--fifa-gold), #e8b960);
+  color: var(--fifa-dark);
+}
+
+.payment-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(200, 151, 58, 0.3);
+}
+
+.payment-cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.payment-cancel:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.price-board {
+  margin-top: 18px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(200,151,58,.35);
+  background: #202331;
+  color: #f8fafc;
+  box-shadow: 0 14px 35px rgba(0,0,0,.12);
+}
+
+.price-board-header {
+  padding: 22px 18px 16px;
+  background: linear-gradient(135deg, #202331, #111827);
+  text-align: center;
+  border-bottom: 1px solid rgba(200,151,58,.35);
+}
+
+.price-board-kicker {
+  color: var(--fifa-gold);
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  font-size: clamp(26px, 4vw, 42px);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.price-board-sub {
+  margin-top: 8px;
+  color: rgba(255,255,255,.78);
+  font-size: 14px;
+}
+
+.price-table-wrap {
+  overflow-x: auto;
+}
+
+.price-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.price-table th {
+  background: #050505;
+  color: #f8fafc;
+  text-align: left;
+  padding: 12px 14px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+
+.price-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  font-size: 14px;
+  color: rgba(255,255,255,.88);
+}
+
+.price-table tr:nth-child(even) td {
+  background: rgba(255,255,255,.035);
+}
+
+.price-table .money {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 19px;
+  font-weight: 900;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.specs {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  padding: 18px;
+  align-items: center;
+}
+
+.spec-title {
+  color: var(--fifa-gold);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.spec-list {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.35;
+  color: rgba(255,255,255,.86);
+}
+
+.spec-list div::before {
+  content: "✹";
+  color: var(--fifa-gold);
+  margin-right: 8px;
+}
+
+.spec-list strong {
+  color: #fff;
+  display: inline-block;
+  min-width: 95px;
+}
+
+.mini-price-stadium {
+  width: 140px;
+  height: 100px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.1);
+  display: grid;
+  place-items: center;
+  color: rgba(255,255,255,.7);
+  font-size: 42px;
+}
+
+.price-board-footer {
+  border-top: 1px solid rgba(200,151,58,.35);
+  padding: 14px 18px 18px;
+  text-align: center;
+  color: rgba(255,255,255,.72);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+@media (max-width: 720px) {
+  .specs {
+    grid-template-columns: 1fr;
+  }
+
+  .mini-price-stadium {
+    width: 100%;
+  }
+
+  .price-table th,
+  .price-table td {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+<div id="preloader" class="overlay active">
+  <div class="loader-box">
+    <div class="spinner"></div>
+    <div class="loader-text">Loading FIFA ticket map…</div>
+  </div>
+</div>
+
+<div id="cookieBanner">
+  <p>We use cookies to improve your browsing experience and keep the checkout process smooth. By continuing, you agree to our cookie policy.</p>
+  <button id="acceptCookiesBtn">Accept cookies</button>
+</div>
+
+<div id="captchaOverlay" class="overlay hidden">
+  <div class="captcha-box">
+    <div class="captcha-title">Prove If You Are Human</div>
+    <div class="captcha-desc">Please answer a simple captcha question to continue to the ticket map.</div>
+    <div class="captcha-question" id="captchaQuestion">What is 7 + 4?</div>
+    <div class="captcha-input-row">
+      <input id="captchaAnswer" type="text" placeholder="Your answer" autocomplete="off" />
+      <button id="captchaSubmit" class="cta-btn" style="width:auto;padding:12px 18px;font-size:14px;">Verify</button>
+    </div>
+    <div class="captcha-hint">Only numbers are accepted.</div>
+  </div>
+</div>
+
+<div id="paymentProofOverlay" class="overlay hidden">
+  <div class="payment-proof-box">
+    <div class="payment-proof-title">Payment Verification</div>
+    <div class="payment-proof-desc">Please upload your payment proof screenshot and transaction hash to complete your order.</div>
+    
+    <form id="paymentProofForm">
+      <div class="form-group">
+        <label class="form-label">📸 Payment Proof Screenshot</label>
+        <div class="file-upload-wrapper">
+          <input type="file" id="proofScreenshot" class="file-input" accept="image/*" required />
+          <label for="proofScreenshot" class="file-upload-label">
+            <span>📁 Choose screenshot (PNG, JPG)</span>
+          </label>
+          <div class="file-name" id="screenshotName"></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="txHash">🔗 Transaction Hash</label>
+        <input type="text" id="txHash" class="text-input" placeholder="Paste your transaction hash here..." required />
+      </div>
+
+      <div class="payment-form-buttons">
+        <button type="submit" class="payment-submit">Submit Payment ✓</button>
+        <button type="button" class="payment-cancel" id="cancelPaymentBtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+<header>
+  <div class="logo">
+    <div class="logo-badge">FIFA<br>WC<br>26</div>
+    <div>
+      <div class="logo-text">TICKETS</div>
+      <span class="logo-sub">Official Resale</span>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <div class="timer">
+      <span>⏱</span>
+      <div>
+        <div class="timer-display" id="timerDisplay">14:59</div>
+        <div class="timer-label">Session time</div>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
+    <button class="lang-btn">🌐 EN</button>
+  </div>
+</header>
+
+<div class="steps-bar">
+  <div class="steps">
+    <div class="step done"><div class="step-num">✓</div><div class="step-label">Choose<br>Match</div></div>
+    <div class="step active"><div class="step-num">2</div><div class="step-label">Select<br>Seats</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-label">Ticket<br>Type</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-label">Review &<br>Pay</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-label">Confirm</div></div>
+  </div>
+</div>
+
+<div class="match-banner">
+  <div class="team-info">
+    <div class="team-flag">TA</div>
+    <div class="team-name">TEAM A</div>
+    <div class="team-rank">FIFA Rank #1</div>
+  </div>
+  <div class="match-center">
+    <div class="match-badge"><span class="world-cup-icon">🏆</span> World Cup 2026</div>
+    <div class="vs-text">VS</div>
+    <div class="match-meta">
+      <span class="match-date"><span class="meta-icon">📅</span> Fri, Jun 26 · 9:00 PM EDT</span>
+      <span class="match-venue"><span class="meta-icon">📍</span> MetLife Stadium · New Jersey, USA</span>
+    </div>
+  </div>
+  <div class="team-info">
+    <div class="team-flag">TB</div>
+    <div class="team-name">TEAM B</div>
+    <div class="team-rank">FIFA Rank #2</div>
+  </div>
+</div>
+
+<div class="ticker-strip">
+  <div class="ticker-track">
+    <div class="ticker-item"><strong>World Cup 2026</strong> • Official match passes available for North America host cities • Secure your fan zone access now</div>
+    <div class="ticker-item"><strong>Brazil vs Argentina</strong> • Premium lower-tier seats next to the penalty area are now live • 92% sold</div>
+    <div class="ticker-item"><strong>England vs France</strong> • Final block release for category 2 stands • travel packages include airport transfer</div>
+    <div class="ticker-item"><strong>Germany vs Spain</strong> • UCL-style hospitality suites added • best view from central midfield sections</div>
+    <div class="ticker-item"><strong>USA vs Mexico</strong> • fan exchange offer active • bundle tickets with official merchandise</div>
+    <div class="ticker-item"><strong>Japan vs South Korea</strong> • safe family seating available • children’s tickets discounted with early purchase</div>
+    <div class="ticker-item"><strong>Morocco vs Portugal</strong> • VIP lounge access included in selected resale listings</div>
+    <div class="ticker-item"><strong>Brazil vs Argentina</strong> • Premium lower-tier seats next to the penalty area are now live • 92% sold</div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="stadium-panel">
+    <div class="panel-header">
+      <div>Stadium Map – Click a Section</div>
+      <div class="zoom-controls">
+        <button class="zoom-btn" id="zoomIn">+</button>
+        <button class="zoom-btn" id="zoomReset">⊡</button>
+        <button class="zoom-btn" id="zoomOut">−</button>
+      </div>
+    </div>
+
+    <div class="stadium-wrap">
+      <div class="map-shell">
+        <div class="stadium-svg-container" id="mapScroll">
+          <div class="tooltip" id="tooltip"></div>
+          <div class="stadium-zoom" id="stadiumZoom">
+            <svg class="stadium-map" id="mainMap" viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="stadBg" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#1e293b"/>
+                  <stop offset="100%" stop-color="#0f172a"/>
+                </radialGradient>
+              </defs>
+              <ellipse cx="200" cy="180" rx="195" ry="175" fill="url(#stadBg)"/>
+              <g id="sections">
+                <!-- Upper Tier Sections -->
+                <path class="sta-section" data-sec="U-N" data-cat="1" data-price="75000" data-avail="22" d="M108,28 L292,28 L270,65 L130,65 Z" fill="#1d4ed8"/><text class="section-label" x="200" y="46">U-N</text>
+                <path class="sta-section sold-out" data-sec="U-S" data-cat="1" data-price="45000" data-avail="0" d="M108,332 L292,332 L270,295 L130,295 Z" fill="#1d4ed8"/><text class="section-label" x="200" y="314">U-S</text>
+                <path class="sta-section" data-sec="U-E" data-cat="1" data-price="55000" data-avail="5" d="M372,108 L372,252 L338,232 L338,128 Z" fill="#1d4ed8"/><text class="section-label" x="355" y="180">U-E</text>
+                <path class="sta-section" data-sec="U-W" data-cat="1" data-price="30000" data-avail="14" d="M28,108 L28,252 L62,232 L62,128 Z" fill="#1d4ed8"/><text class="section-label" x="45" y="180">U-W</text>
+                <path class="sta-section sold-out" data-sec="U-NE" data-cat="1" data-price="65000" data-avail="0" d="M292,28 L372,108 L338,128 L270,65 Z" fill="#1d4ed8"/><text class="section-label" x="318" y="84">U-NE</text>
+                <path class="sta-section" data-sec="U-NW" data-cat="1" data-price="25000" data-avail="18" d="M108,28 L28,108 L62,128 L130,65 Z" fill="#1d4ed8"/><text class="section-label" x="82" y="84">U-NW</text>
+                <path class="sta-section" data-sec="U-SE" data-cat="1" data-price="50000" data-avail="10" d="M292,332 L372,252 L338,232 L270,295 Z" fill="#1d4ed8"/><text class="section-label" x="318" y="276">U-SE</text>
+                <path class="sta-section sold-out" data-sec="U-SW" data-cat="1" data-price="15000" data-avail="0" d="M108,332 L28,252 L62,232 L130,295 Z" fill="#1d4ed8"/><text class="section-label" x="82" y="276">U-SW</text>
+
+                <!-- Middle Tier Sections -->
+                <path class="sta-section" data-sec="M-N" data-cat="2" data-price="100000" data-avail="16" d="M130,65 L270,65 L252,98 L148,98 Z" fill="#15803d"/><text class="section-label" x="200" y="81">M-N</text>
+                <path class="sta-section sold-out" data-sec="M-S" data-cat="2" data-price="95000" data-avail="0" d="M130,295 L270,295 L252,262 L148,262 Z" fill="#15803d"/><text class="section-label" x="200" y="279">M-S</text>
+                <path class="sta-section" data-sec="M-E" data-cat="2" data-price="88000" data-avail="27" d="M338,128 L338,232 L308,218 L308,142 Z" fill="#15803d"/><text class="section-label" x="323" y="180">M-E</text>
+                <path class="sta-section sold-out" data-sec="M-W" data-cat="2" data-price="85000" data-avail="0" d="M62,128 L62,232 L92,218 L92,142 Z" fill="#15803d"/><text class="section-label" x="77" y="180">M-W</text>
+                <path class="sta-section" data-sec="M-NE" data-cat="2" data-price="92000" data-avail="6" d="M270,65 L338,128 L308,142 L252,98 Z" fill="#15803d"/><text class="section-label" x="292" y="108">M-NE</text>
+                <path class="sta-section sold-out" data-sec="M-NW" data-cat="2" data-price="90000" data-avail="0" d="M130,65 L62,128 L92,142 L148,98 Z" fill="#15803d"/><text class="section-label" x="108" y="108">M-NW</text>
+                <path class="sta-section" data-sec="M-SE" data-cat="2" data-price="87000" data-avail="8" d="M270,295 L338,232 L308,218 L252,262 Z" fill="#15803d"/><text class="section-label" x="292" y="252">M-SE</text>
+                <path class="sta-section" data-sec="M-SW" data-cat="2" data-price="82000" data-avail="4" d="M130,295 L62,232 L92,218 L148,262 Z" fill="#15803d"/><text class="section-label" x="108" y="252">M-SW</text>
+
+                <!-- Lower Tier Sections (Premium) -->
+                <path class="sta-section sold-out" data-sec="L-N" data-cat="3" data-price="207000" data-avail="0" d="M148,98 L252,98 L238,130 L162,130 Z" fill="#b45309"/><text class="section-label" x="200" y="113">L-N</text>
+                <path class="sta-section" data-sec="L-S" data-cat="3" data-price="195000" data-avail="5" d="M148,262 L252,262 L238,230 L162,230 Z" fill="#b45309"/><text class="section-label" x="200" y="247">L-S</text>
+                <path class="sta-section sold-out" data-sec="L-E" data-cat="3" data-price="1250000" data-avail="0" d="M308,142 L308,218 L278,207 L278,153 Z" fill="#b45309"/><text class="section-label" x="293" y="180">L-E</text>
+                <path class="sta-section" data-sec="L-W" data-cat="3" data-price="1542000" data-avail="6" d="M92,142 L92,218 L122,207 L122,153 Z" fill="#b45309"/><text class="section-label" x="107" y="180">L-W</text>
+                <path class="sta-section" data-sec="L-NE" data-cat="3" data-price="185000" data-avail="3" d="M252,98 L308,142 L278,153 L238,130 Z" fill="#b45309"/><text class="section-label" x="269" y="130">L-NE</text>
+                <path class="sta-section" data-sec="L-NW" data-cat="3" data-price="175000" data-avail="5" d="M148,98 L92,142 L122,153 L162,130 Z" fill="#b45309"/><text class="section-label" x="131" y="130">L-NW</text>
+                <path class="sta-section sold-out" data-sec="L-SE" data-cat="3" data-price="165000" data-avail="0" d="M252,262 L308,218 L278,207 L238,230 Z" fill="#b45309"/><text class="section-label" x="269" y="230">L-SE</text>
+                <path class="sta-section" data-sec="L-SW" data-cat="3" data-price="125000" data-avail="1" d="M148,262 L92,218 L122,207 L162,230 Z" fill="#b45309"/><text class="section-label" x="131" y="230">L-SW</text>
+              </g>
+
+              <rect class="pitch-outer" x="158" y="128" width="84" height="104" rx="4"/>
+              <line class="pitch-markings" x1="158" y1="180" x2="242" y2="180"/>
+              <circle class="pitch-markings" cx="200" cy="180" r="12"/>
+              <rect class="pitch-markings" x="168" y="128" width="64" height="22"/>
+              <rect class="pitch-markings" x="168" y="210" width="64" height="22"/>
+              <rect class="pitch-markings" x="183" y="128" width="34" height="10"/>
+              <rect class="pitch-markings" x="183" y="222" width="34" height="10"/>
+              <circle fill="rgba(255,255,255,.6)" cx="200" cy="180" r="1.5"/>
+              <text class="pitch-label" x="200" y="176">PITCH</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="minimap-card">
+          <div class="minimap-title">Minimap</div>
+          <svg class="minimap" id="miniMap" viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="200" cy="180" rx="195" ry="175" fill="#0f172a"/>
+            <use href="#sections" class="mini-sections"></use>
+            <rect id="miniViewport" class="mini-viewport" x="0" y="0" width="400" height="360" rx="8"/>
+          </svg>
+          <p style="font-size:11px;color:#64748b;margin-top:8px;line-height:1.4">Click the minimap to quickly look around the stadium.</p>
+          <div class="minimap-note-box">
+            <p class="minimap-note">PLEASE NOTE: THE PRICE DISPLAYED BELOW IS IN UNITED STATES DOLLARS (USD) AND REFLECTS THE TOTAL TICKET PRICE INCLUSIVE OF ALL APPLICABLE TAXES AND FEES.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot" style="background:#1d4ed8"></span>Cat 1</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#15803d"></span>Cat 2</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#b45309"></span>Cat 3</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#cdd3db"></span>Sold Out</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--fifa-gold)"></span>Selected</div>
+      </div>
+    </div>
+
+    <div class="cat-filters">
+      <span style="font-size:12px;color:var(--text-muted);align-self:center;font-weight:800">FILTER:</span>
+      <button class="cat-btn cat-all active" data-filter="all">All Sections</button>
+      <button class="cat-btn cat-available" data-filter="available">Available Seats</button>
+      <button class="cat-btn cat-1" data-filter="1">Cat 1 – from $75,000</button>
+      <button class="cat-btn cat-2" data-filter="2">Cat 2 – from $45,000</button>
+      <button class="cat-btn cat-3" data-filter="3">Cat 3/4 – from $15,000</button>
+    </div>
+
+    <!--<section class="price-board">
+      <div class="price-board-header">
+        <div class="price-board-kicker">Final – Official Resale Marketplace</div>
+        <div class="price-board-sub">Match 104 · July 19, 2026 · MetLife Stadium, NY/NJ · Prices in USD</div>
+      </div>
+
+      <div class="price-table-wrap">
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th>Ticket Type / Location</th>
+              <th>Seat Details</th>
+              <th>Category</th>
+              <th>Price per Ticket</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Premium Lower Behind Goal</td><td>Block 124, Row 10, Seats 1–6</td><td>Category 1</td><td class="money">$1,542,000</td></tr>
+            <tr><td>Premium Lower Midfield</td><td>Block 113, Row 5, Seats 4–6</td><td>Category 1</td><td class="money">$1,250,000</td></tr>
+            <tr><td>Easy Access Lower</td><td>Block 146, Row 32, Seat 15</td><td>Category 1</td><td class="money">$207,000</td></tr>
+            <tr><td>Category 1 Lower</td><td>Block 110, Row 15, Seats 8–10</td><td>Category 1</td><td class="money">$185,000</td></tr>
+            <tr><td>Category 1 Lower</td><td>Block 138, Row 15, Seat 20</td><td>Category 1</td><td class="money">$150,000</td></tr>
+            <tr><td>Category 1 Lower</td><td>Block 128, Row 22, Seat 22</td><td>Category 1</td><td class="money">$125,000</td></tr>
+            <tr><td>Category 2 Lower</td><td>Block 104, Row 30, Seat 30</td><td>Category 2</td><td class="money">$100,000</td></tr>
+            <tr><td>Category 2 Lower</td><td>Block 144, Row 35, Seat 35</td><td>Category 2</td><td class="money">$95,000</td></tr>
+            <tr><td>Category 1 Upper</td><td>Block 313, Row 5, Seat 22</td><td>Category 1 Upper</td><td class="money">$75,000</td></tr>
+            <tr><td>Category 2 Upper</td><td>Block 338, Row 5, Seat 5</td><td>Category 1 Upper</td><td class="money">$55,000</td></tr>
+            <tr><td>Category 3 Upper</td><td>Block 310, Row 12, Seat 12</td><td>Category 2</td><td class="money">$45,000</td></tr>
+            <tr><td>Category 3 Upper</td><td>Block 301, Row 5, Seat 12</td><td>Category 3</td><td class="money">$30,000</td></tr>
+            <tr><td>Category 3 Upper</td><td>Block 325, Row 8, Seat 18</td><td>Category 3</td><td class="money">$25,000</td></tr>
+            <tr><td>Category 4 Upper</td><td>Block 346, Row 25, Seat 25</td><td>Category 4</td><td class="money">$18,500</td></tr>
+            <tr><td>Category 4 Upper</td><td>Block 331, Row 5, Seat 30</td><td>Category 4</td><td class="money">$15,000</td></tr>
+          </tbody>
+        </table>
+      </div>-->
+
+      <div class="specs">
+        <div>
+          <div class="spec-title">Listing Specifications</div>
+          <div class="spec-list">
+            <div><strong>Platform:</strong> Listings exclusive to the official resale/exchange platform.</div>
+            <div><strong>Fees:</strong> Standard service fees may apply at checkout.</div>
+            <div><strong>Format:</strong> Mobile-only digital ticket delivery.</div>
+            <div><strong>Verification:</strong> Prices are set by individual sellers and verified before checkout.</div>
+          </div>
+        </div>
+        <div class="mini-price-stadium">🏟️</div>
+      </div>
+
+      <div class="price-board-footer">
+        All prices are subject to change in real time. Select a section above to add seats to your order summary.
+      </div>
+    </section>
+
+  </div>
+
+  <div class="sidebar">
+    <div class="info-card">
+      <div class="info-card-header">Section Details</div>
+      <div class="info-card-body">
+        <div class="section-info-empty" id="emptyState">
+          <div class="icon">🏟️</div>
+          <p>Click any section on the stadium map to see details and pricing.</p>
+        </div>
+
+        <div class="section-info-detail" id="sectionDetail">
+          <div class="sec-name" id="secName">–</div>
+          <span class="sec-cat-badge" id="secCatBadge">–</span>
+          <div class="sec-detail-row"><span class="sec-detail-key">Category</span><span class="sec-detail-val" id="secCat">–</span></div>
+          <div class="sec-detail-row"><span class="sec-detail-key">Tier</span><span class="sec-detail-val" id="secTier">–</span></div>
+          <div class="sec-detail-row"><span class="sec-detail-key">Available</span><span class="sec-detail-val" id="secAvail">–</span></div>
+
+          <div class="price-highlight">
+            <div>
+              <div class="price-label">Price per ticket</div>
+              <div class="price-per">Includes all fees</div>
+            </div>
+            <div class="price-amount" id="secPrice">$–</div>
+          </div>
+
+          <div class="qty-row">
+            <span class="qty-label">Quantity</span>
+            <div class="qty-controls">
+              <button class="qty-btn" id="qtyMinus">−</button>
+              <span class="qty-num" id="qtyNum">1</span>
+              <button class="qty-btn" id="qtyPlus">+</button>
+            </div>
+          </div>
+
+          <button class="cta-btn" id="addToCartBtn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-header">Order Summary</div>
+      <div class="info-card-body">
+        <div id="orderEmpty" class="order-empty">No tickets selected yet.</div>
+        <div id="orderItems"></div>
+        <div id="orderTotalRow" class="order-total" style="display:none">
+          <span>Total</span>
+          <span id="orderTotal">$0</span>
+        </div>
+
+        <button class="cta-btn" id="checkoutBtn" style="display:none;background:linear-gradient(135deg,#004c97,#1d4ed8);color:#fff">Proceed to Checkout →</button>
+
+        <div class="payment-methods" id="paymentMethods">
+          <div class="pay-title">Choose Payment Method</div>
+
+          <!--<div class="pay-option active" data-pay="card">
+            💳 Card Payment
+            <div style="font-size:11px;color:#64748b;margin-top:3px">Visa, MasterCard, bank card</div>
+          </div>-->
+
+          <div class="pay-option" data-pay="bitcoin">
+            ₿ Bitcoin Payment
+            <div style="font-size:11px;color:#64748b;margin-top:3px">Pay with BTC wallet transfer</div>
+          </div>
+
+          <div class="wallet-box" id="walletBox">
+            <strong>Bitcoin Wallet Address</strong>
+            <div class="wallet-address" id="btcWallet">bc1qexampleticketresalewalletaddress2026demo9x7k</div>
+            <button class="copy-btn" id="copyWallet">Copy BTC Address</button>
+            <p style="font-size:11px;color:#cbd5e1;margin-top:8px;line-height:1.4">Demo only. Replace this wallet with your real BTC payment address before using this project.</p>
+          </div>
+
+          <button class="cta-btn" id="payNowBtn">Pay Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-body">
+        <div class="trust-row">
+          <div class="trust-item"><div class="trust-icon">🔒</div>Secure</div>
+          <div class="trust-item"><div class="trust-icon">✅</div>Guaranteed</div>
+          <div class="trust-item"><div class="trust-icon">🎫</div>Tickets</div>
+          <div class="trust-item"><div class="trust-icon">₿</div>Bitcoin</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let timeLeft = 14 * 60 + 59;
+let selectedSection = null;
+let qty = 1;
+let cart = [];
+let zoom = 1;
+
+const timerEl = document.getElementById("timerDisplay");
+const tierMap = { U: "Upper Tier", M: "Middle Tier", L: "Lower Tier (Pitch-side)" };
+const catNameMap = { 1: "Category 1", 2: "Category 2", 3: "Category 3" };
+
+setInterval(() => {
+  if (timeLeft <= 0) return;
+  timeLeft--;
+  const m = Math.floor(timeLeft / 60).toString().padStart(2, "0");
+  const s = (timeLeft % 60).toString().padStart(2, "0");
+  timerEl.textContent = `${m}:${s}`;
+  if (timeLeft < 120) timerEl.style.color = "#ef4444";
+}, 1000);
+
+const tooltip = document.getElementById("tooltip");
+const svgContainer = document.querySelector(".stadium-svg-container");
+
+document.querySelectorAll(".sta-section").forEach(sec => {
+  sec.addEventListener("mouseenter", () => {
+    const avail = Number(sec.dataset.avail);
+    tooltip.textContent = avail === 0
+      ? `${sec.dataset.sec} – SOLD OUT`
+      : `${sec.dataset.sec} · $${sec.dataset.price} · ${avail} left`;
+    tooltip.style.display = "block";
+  });
+
+  sec.addEventListener("mousemove", e => {
+    const rect = svgContainer.getBoundingClientRect();
+    tooltip.style.left = `${e.clientX - rect.left + svgContainer.scrollLeft}px`;
+    tooltip.style.top = `${e.clientY - rect.top + svgContainer.scrollTop}px`;
+  });
+
+  sec.addEventListener("mouseleave", () => tooltip.style.display = "none");
+
+  sec.addEventListener("click", () => selectSection(sec));
+});
+
+function selectSection(sec) {
+  const avail = Number(sec.dataset.avail);
+  if (avail === 0) {
+    showToast("This section is sold out.");
+    return;
+  }
+
+  document.querySelectorAll(".sta-section.selected").forEach(s => s.classList.remove("selected"));
+  sec.classList.add("selected");
+  selectedSection = sec.dataset;
+  qty = 1;
+  document.getElementById("qtyNum").textContent = qty;
+  renderSectionDetail(sec.dataset);
+}
+
+function renderSectionDetail(d) {
+  document.getElementById("emptyState").classList.add("hidden");
+  document.getElementById("sectionDetail").classList.add("visible");
+
+  const tier = d.sec.split("-")[0];
+
+  document.getElementById("secName").textContent = `Section ${d.sec}`;
+  document.getElementById("secCat").textContent = catNameMap[d.cat];
+  document.getElementById("secTier").textContent = tierMap[tier];
+  document.getElementById("secAvail").textContent = `${d.avail} seats`;
+  document.getElementById("secPrice").textContent = `$${Number(d.price).toLocaleString()}`;
+
+  const badge = document.getElementById("secCatBadge");
+  badge.textContent = catNameMap[d.cat];
+  badge.className = `sec-cat-badge badge-cat${d.cat}`;
+}
+
+document.getElementById("qtyMinus").addEventListener("click", () => {
+  if (qty > 1) {
+    qty--;
+    document.getElementById("qtyNum").textContent = qty;
+  }
+});
+
+document.getElementById("qtyPlus").addEventListener("click", () => {
+  if (!selectedSection) return;
+  const maxQ = Math.min(Number(selectedSection.avail), 8);
+  if (qty < maxQ) {
+    qty++;
+    document.getElementById("qtyNum").textContent = qty;
+  } else {
+    showToast(`Only ${maxQ} ticket(s) can be selected here.`);
+  }
+});
+
+document.getElementById("addToCartBtn").addEventListener("click", () => {
+  if (!selectedSection) return;
+
+  const existing = cart.find(i => i.sec === selectedSection.sec);
+  if (existing) {
+    existing.qty = qty;
+  } else {
+    cart.push({
+      sec: selectedSection.sec,
+      cat: selectedSection.cat,
+      price: Number(selectedSection.price),
+      qty
+    });
+  }
+
+  renderCart();
+  showToast(`✓ ${qty}× Section ${selectedSection.sec} added to cart`);
+});
+
+function renderCart() {
+  const orderItems = document.getElementById("orderItems");
+  const emptyEl = document.getElementById("orderEmpty");
+  const totalRow = document.getElementById("orderTotalRow");
+  const checkoutBtn = document.getElementById("checkoutBtn");
+  const paymentMethods = document.getElementById("paymentMethods");
+
+  if (!cart.length) {
+    emptyEl.style.display = "block";
+    totalRow.style.display = "none";
+    checkoutBtn.style.display = "none";
+    paymentMethods.classList.remove("visible");
+    orderItems.innerHTML = "";
+    return;
+  }
+
+  emptyEl.style.display = "none";
+  totalRow.style.display = "flex";
+  checkoutBtn.style.display = "block";
+
+  let total = 0;
+  orderItems.innerHTML = cart.map(item => {
+    const line = item.price * item.qty;
+    total += line;
+    return `
+      <div class="order-item">
+        <span>Sec ${item.sec} ×${item.qty}</span>
+        <span>$${line.toLocaleString()}</span>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("orderTotal").textContent = `$${total.toLocaleString()}`;
+}
+
+document.querySelectorAll(".cat-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const filter = btn.dataset.filter;
+
+    document.querySelectorAll(".sta-section").forEach(sec => {
+      sec.classList.remove("highlight-available");
+      const isAvailable = Number(sec.dataset.avail) > 0;
+      const isSoldOut = sec.classList.contains("sold-out");
+
+      if (filter === "all") {
+        sec.style.opacity = isSoldOut ? ".35" : "1";
+      } else if (filter === "available") {
+        if (isAvailable) {
+          sec.style.opacity = "1";
+          sec.classList.add("highlight-available");
+        } else {
+          sec.style.opacity = ".12";
+        }
+      } else {
+        if (sec.dataset.cat === filter) {
+          sec.style.opacity = isSoldOut ? ".35" : "1";
+        } else {
+          sec.style.opacity = ".12";
+        }
+      }
+    });
+  });
+});
+
+let currentStep = 2;
+
+function updateStep(stepNum) {
+  document.querySelectorAll(".step").forEach((step, idx) => {
+    const num = idx + 1;
+    step.classList.remove("active", "done");
+    const stepNumEl = step.querySelector(".step-num");
+    if (num < stepNum) {
+      step.classList.add("done");
+      stepNumEl.textContent = "✓";
+    } else if (num === stepNum) {
+      step.classList.add("active");
+      stepNumEl.textContent = stepNum;
+    } else {
+      stepNumEl.textContent = num;
+    }
+  });
+}
+
+document.getElementById("checkoutBtn").addEventListener("click", () => {
+  currentStep = 3;
+  updateStep(currentStep);
+  document.getElementById("paymentMethods").classList.add("visible");
+  showToast("Choose your payment method.");
+});
+
+document.querySelectorAll(".pay-option").forEach(option => {
+  option.addEventListener("click", () => {
+    document.querySelectorAll(".pay-option").forEach(o => o.classList.remove("active"));
+    option.classList.add("active");
+
+    const walletBox = document.getElementById("walletBox");
+    walletBox.classList.toggle("visible", option.dataset.pay === "bitcoin");
+    currentStep = 4;
+    updateStep(currentStep);
+  });
+});
+
+document.getElementById("copyWallet").addEventListener("click", async () => {
+  const wallet = document.getElementById("btcWallet").textContent;
+  try {
+    await navigator.clipboard.writeText(wallet);
+    showToast("Bitcoin address copied.");
+  } catch {
+    showToast("Copy failed. Please copy manually.");
+  }
+});
+
+document.getElementById("payNowBtn").addEventListener("click", () => {
+  const activePay = document.querySelector(".pay-option.active").dataset.pay;
+  if (activePay === "bitcoin") {
+    showOverlay(paymentProofOverlay);
+  } else {
+    showToast("Opening secure card payment…");
+  }
+});
+
+const paymentProofOverlay = document.getElementById("paymentProofOverlay");
+const paymentForm = document.getElementById("paymentProofForm");
+const proofScreenshot = document.getElementById("proofScreenshot");
+const screenshotName = document.getElementById("screenshotName");
+const txHash = document.getElementById("txHash");
+const cancelPaymentBtn = document.getElementById("cancelPaymentBtn");
+
+proofScreenshot.addEventListener("change", (e) => {
+  if (e.target.files.length > 0) {
+    screenshotName.textContent = `✓ ${e.target.files[0].name}`;
+  } else {
+    screenshotName.textContent = "";
+  }
+});
+
+paymentForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  if (!proofScreenshot.files.length) {
+    showToast("Please upload a payment proof screenshot.");
+    return;
+  }
+
+  if (!txHash.value.trim()) {
+    showToast("Please enter your transaction hash.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("screenshot", proofScreenshot.files[0]);
+  formData.append("txHash", txHash.value.trim());
+
+  try {
+    showToast("Processing payment verification…");
+    
+    // Simulate payment processing delay
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    hideOverlay(paymentProofOverlay);
+    showToast("Payment is being verified! Your tickets will be processed once payment is confirmed.");
+    
+    // Reset form
+    paymentForm.reset();
+    screenshotName.textContent = "";
+    
+  } catch (error) {
+    showToast("Error processing payment. Please try again.");
+  }
+});
+
+cancelPaymentBtn.addEventListener("click", () => {
+  hideOverlay(paymentProofOverlay);
+  paymentForm.reset();
+  screenshotName.textContent = "";
+});
+
+const stadiumZoom = document.getElementById("stadiumZoom");
+const mapScroll = document.getElementById("mapScroll");
+const miniViewport = document.getElementById("miniViewport");
+const miniMap = document.getElementById("miniMap");
+
+function applyZoom() {
+  stadiumZoom.style.transform = `scale(${zoom})`;
+  stadiumZoom.style.width = `${100 / zoom}%`;
+  updateMiniViewport();
+}
+
+document.getElementById("zoomIn").addEventListener("click", () => {
+  zoom = Math.min(zoom + .2, 1.8);
+  applyZoom();
+});
+
+document.getElementById("zoomOut").addEventListener("click", () => {
+  zoom = Math.max(zoom - .2, 1);
+  applyZoom();
+});
+
+document.getElementById("zoomReset").addEventListener("click", () => {
+  zoom = 1;
+  mapScroll.scrollTo({ left: 0, top: 0, behavior: "smooth" });
+  applyZoom();
+});
+
+function updateMiniViewport() {
+  const scrollW = mapScroll.scrollWidth || 1;
+  const scrollH = mapScroll.scrollHeight || 1;
+  const viewW = mapScroll.clientWidth;
+  const viewH = mapScroll.clientHeight;
+
+  const scaleX = 400 / scrollW;
+  const scaleY = 360 / scrollH;
+
+  miniViewport.setAttribute("x", mapScroll.scrollLeft * scaleX);
+  miniViewport.setAttribute("y", mapScroll.scrollTop * scaleY);
+  miniViewport.setAttribute("width", Math.min(400, viewW * scaleX));
+  miniViewport.setAttribute("height", Math.min(360, viewH * scaleY));
+}
+
+mapScroll.addEventListener("scroll", updateMiniViewport);
+window.addEventListener("resize", updateMiniViewport);
+
+miniMap.addEventListener("click", e => {
+  const rect = miniMap.getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width) * 400;
+  const y = ((e.clientY - rect.top) / rect.height) * 360;
+
+  mapScroll.scrollTo({
+    left: (x / 400) * mapScroll.scrollWidth - mapScroll.clientWidth / 2,
+    top: (y / 360) * mapScroll.scrollHeight - mapScroll.clientHeight / 2,
+    behavior: "smooth"
+  });
+});
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2800);
+}
+
+const preloader = document.getElementById("preloader");
+const captchaOverlay = document.getElementById("captchaOverlay");
+const captchaQuestion = document.getElementById("captchaQuestion");
+const captchaAnswer = document.getElementById("captchaAnswer");
+const captchaSubmit = document.getElementById("captchaSubmit");
+const cookieBanner = document.getElementById("cookieBanner");
+const acceptCookiesBtn = document.getElementById("acceptCookiesBtn");
+
+const captchaChallenges = [
+  { q: "What is 7 + 4?", a: "11" },
+  { q: "What is 5 + 3?", a: "8" },
+  { q: "What is 9 + 6?", a: "15" },
+  { q: "What is 2 + 8?", a: "10" }
+];
+const captcha = captchaChallenges[Math.floor(Math.random() * captchaChallenges.length)];
+captchaQuestion.textContent = captcha.q;
+
+function showCookieBanner() {
+  if (!cookieBanner) return;
+  cookieBanner.classList.add("show");
+}
+
+function hideCookieBanner() {
+  if (!cookieBanner) return;
+  cookieBanner.classList.remove("show");
+}
+
+acceptCookiesBtn.addEventListener("click", () => {
+  localStorage.setItem("cookieAccepted", "true");
+  hideCookieBanner();
+  showToast("Cookies accepted.");
+});
+
+function ensureCookieConsent() {
+  if (!localStorage.getItem("cookieAccepted")) {
+    showCookieBanner();
+  }
+}
+
+function showOverlay(el) {
+  el.classList.remove("hidden");
+  el.classList.add("active");
+}
+
+function hideOverlay(el) {
+  el.classList.add("hidden");
+  el.classList.remove("active");
+}
+
+function validateCaptcha() {
+  const answer = captchaAnswer.value.trim();
+  if (answer === captcha.a) {
+    hideOverlay(captchaOverlay);
+    showToast("Verification complete. Enjoy your ticket search!");
+    captchaAnswer.value = "";
+    return;
+  }
+
+  showToast("Incorrect answer. Please try again.");
+  captchaAnswer.focus();
+}
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    hideOverlay(preloader);
+    showOverlay(captchaOverlay);
+    captchaAnswer.focus();
+    ensureCookieConsent();
+  }, 600);
+});
+
+captchaSubmit.addEventListener("click", validateCaptcha);
+captchaAnswer.addEventListener("keydown", e => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    validateCaptcha();
+  }
+});
+
+// Theme toggle functionality
+const themeToggle = document.getElementById("themeToggle");
+const htmlElement = document.documentElement;
+
+function initTheme() {
+  const savedTheme = localStorage.getItem("theme") || "dark";
+  if (savedTheme === "light") {
+    document.body.classList.add("light-theme");
+    themeToggle.textContent = "☀️";
+  } else {
+    document.body.classList.remove("light-theme");
+    themeToggle.textContent = "🌙";
+  }
+}
+
+themeToggle.addEventListener("click", () => {
+  const isLight = document.body.classList.toggle("light-theme");
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+  themeToggle.textContent = isLight ? "☀️" : "🌙";
+  showToast(isLight ? "Light mode enabled" : "Dark mode enabled");
+});
+
+initTheme();
+
+updateMiniViewport();
+</script>
+</body>
+</html>
