@@ -18,6 +18,13 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: "Barlow", sans-serif;
   background: var(--fifa-light);
@@ -309,6 +316,7 @@ header {
   grid-template-columns: minmax(0, 1fr) 340px;
   gap: 20px;
   align-items: start;
+  min-width: 0;
 }
 
 .stadium-panel, .info-card {
@@ -316,6 +324,7 @@ header {
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
+  min-width: 0;
 }
 
 .panel-header, .info-card-header {
@@ -516,6 +525,7 @@ svg.stadium-map {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-width: 0;
 }
 
 .info-card-body { padding: 16px 18px; }
@@ -886,17 +896,31 @@ body.light-theme .order-total {
 }
 
 @media (max-width: 640px) {
+  body {
+    min-width: 0;
+  }
+
   header {
     height: auto;
     padding: 12px;
     gap: 12px;
     align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    min-width: 0;
+  }
+
+  .logo-text {
+    overflow-wrap: anywhere;
   }
 
   .header-right {
     flex-direction: column;
     align-items: flex-end;
     gap: 8px;
+    margin-left: auto;
   }
 
   .logo-text { font-size: 18px; }
@@ -947,16 +971,29 @@ body.light-theme .order-total {
   }
 
   .stadium-wrap {
-    padding: 12px;
+    padding: 10px;
   }
 
   .map-shell {
     display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .stadium-svg-container {
+    overflow: hidden;
+    border-radius: 10px;
   }
 
   .stadium-zoom {
     min-width: auto;
+    width: 100% !important;
+    transform: none !important;
+  }
+
+  svg.stadium-map {
     width: 100%;
+    max-width: 100%;
   }
 
   .minimap-card {
@@ -985,6 +1022,32 @@ body.light-theme .order-total {
   .stadium-panel,
   .main {
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .main {
+    padding: 10px;
+    gap: 12px;
+  }
+
+  .panel-header,
+  .info-card-header {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .price-highlight,
+  .qty-row,
+  .order-item,
+  .order-total {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .price-amount {
+    font-size: 25px;
+    overflow-wrap: anywhere;
   }
 
   .cta-btn,
@@ -1393,6 +1456,44 @@ body.light-theme .order-total {
   min-width: 95px;
 }
 
+.location-jump {
+  display: grid;
+  gap: 7px;
+  margin: 4px 0 2px;
+}
+
+.spec-list .location-jump::before {
+  content: none;
+}
+
+.location-jump label {
+  color: #fff;
+  font-weight: 800;
+}
+
+.location-jump select {
+  width: min(100%, 360px);
+  min-height: 42px;
+  border: 1px solid rgba(200,151,58,.55);
+  border-radius: 8px;
+  background: rgba(4,12,32,.72);
+  color: #fff;
+  padding: 0 12px;
+  font: inherit;
+  outline: none;
+}
+
+.location-jump option,
+.location-jump optgroup {
+  background: #061125;
+  color: #fff;
+}
+
+.location-jump select:focus {
+  border-color: var(--fifa-gold);
+  box-shadow: 0 0 0 3px rgba(200,151,58,.18);
+}
+
 .mini-price-stadium {
   width: 140px;
   height: 100px;
@@ -1427,6 +1528,16 @@ body.light-theme .order-total {
   .price-table td {
     padding: 10px 12px;
     font-size: 12px;
+  }
+
+  .price-table {
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .price-table th,
+  .price-table td {
+    overflow-wrap: anywhere;
   }
 }
 
@@ -1696,7 +1807,8 @@ body {
     padding: 24px 16px 22px;
   }
   .player-card {
-    min-width: 200px;
+    flex-basis: min(82vw, 200px);
+    min-width: 0;
   }
 }
 
@@ -1783,11 +1895,10 @@ body {
 
 <div class="steps-bar">
   <div class="steps">
-    <div class="step done"><div class="step-num">✓</div><div class="step-label">Choose<br>Match</div></div>
-    <div class="step active"><div class="step-num">2</div><div class="step-label">Select<br>Seats</div></div>
-    <div class="step"><div class="step-num">3</div><div class="step-label">Ticket<br>Type</div></div>
-    <div class="step"><div class="step-num">4</div><div class="step-label">Review &<br>Pay</div></div>
-    <div class="step"><div class="step-num">5</div><div class="step-label">Confirm</div></div>
+    <div class="step active"><div class="step-num">✓</div><div class="step-label">Select<br>Seats</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-label">Ticket<br>Type</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-label">Review &<br>Pay</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-label">Confirm</div></div>
   </div>
 </div>
 
@@ -1967,6 +2078,42 @@ body {
           <div class="spec-title">Listing Specifications</div>
           <div class="spec-list">
             <div><strong>Platform:</strong> Listings exclusive to the official resale/exchange platform.</div>
+            <div class="location-jump">
+              <label for="locationJump"><strong>Location:</strong> Pick a stadium section</label>
+              <select id="locationJump" aria-label="Jump to a stadium section">
+                <option value="">Select location on map</option>
+                <optgroup label="Upper Tier">
+                  <option value="U-N">Upper North</option>
+                  <option value="U-NE">Upper Northeast</option>
+                  <option value="U-E">Upper East</option>
+                  <option value="U-SE">Upper Southeast</option>
+                  <option value="U-S">Upper South</option>
+                  <option value="U-SW">Upper Southwest</option>
+                  <option value="U-W">Upper West</option>
+                  <option value="U-NW">Upper Northwest</option>
+                </optgroup>
+                <optgroup label="Middle Tier">
+                  <option value="M-N">Middle North</option>
+                  <option value="M-NE">Middle Northeast</option>
+                  <option value="M-E">Middle East</option>
+                  <option value="M-SE">Middle Southeast</option>
+                  <option value="M-S">Middle South</option>
+                  <option value="M-SW">Middle Southwest</option>
+                  <option value="M-W">Middle West</option>
+                  <option value="M-NW">Middle Northwest</option>
+                </optgroup>
+                <optgroup label="Lower Tier">
+                  <option value="L-N">Lower North</option>
+                  <option value="L-NE">Lower Northeast</option>
+                  <option value="L-E">Lower East</option>
+                  <option value="L-SE">Lower Southeast</option>
+                  <option value="L-S">Lower South</option>
+                  <option value="L-SW">Lower Southwest</option>
+                  <option value="L-W">Lower West</option>
+                  <option value="L-NW">Lower Northwest</option>
+                </optgroup>
+              </select>
+            </div>
             <div><strong>Fees:</strong> Standard service fees may apply at checkout.</div>
             <div><strong>Format:</strong> Mobile-only digital ticket delivery.</div>
             <div><strong>Verification:</strong> Prices are set by individual sellers and verified before checkout.</div>
@@ -1996,6 +2143,7 @@ body {
           <span class="sec-cat-badge" id="secCatBadge">–</span>
           <div class="sec-detail-row"><span class="sec-detail-key">Category</span><span class="sec-detail-val" id="secCat">–</span></div>
           <div class="sec-detail-row"><span class="sec-detail-key">Tier</span><span class="sec-detail-val" id="secTier">–</span></div>
+          <div class="sec-detail-row"><span class="sec-detail-key">Location</span><span class="sec-detail-val" id="secLocation">–</span></div>
           <div class="sec-detail-row"><span class="sec-detail-key">Available</span><span class="sec-detail-val" id="secAvail">–</span></div>
 
           <div class="price-highlight">
@@ -2200,6 +2348,7 @@ let zoom = 1;
 const timerEl = document.getElementById("timerDisplay");
 const tierMap = { U: "Upper Tier", M: "Middle Tier", L: "Lower Tier (Pitch-side)" };
 const catNameMap = { 1: "Category 1", 2: "Category 2", 3: "Category 3" };
+const locNameMap = { N: "North", S: "South", E: "East", W: "West", NE: "Northeast", NW: "Northwest", SE: "Southeast", SW: "Southwest" };
 
 setInterval(() => {
   if (timeLeft <= 0) return;
@@ -2243,6 +2392,8 @@ function selectSection(sec) {
   document.querySelectorAll(".sta-section.selected").forEach(s => s.classList.remove("selected"));
   sec.classList.add("selected");
   selectedSection = sec.dataset;
+  const locationJump = document.getElementById("locationJump");
+  if (locationJump) locationJump.value = sec.dataset.sec;
   qty = 1;
   document.getElementById("qtyNum").textContent = qty;
   renderSectionDetail(sec.dataset);
@@ -2257,6 +2408,8 @@ function renderSectionDetail(d) {
   document.getElementById("secName").textContent = `Section ${d.sec}`;
   document.getElementById("secCat").textContent = catNameMap[d.cat];
   document.getElementById("secTier").textContent = tierMap[tier];
+  const locationKey = d.sec.split("-")[1] || "";
+  document.getElementById("secLocation").textContent = locNameMap[locationKey] || locationKey || "Center";
   document.getElementById("secAvail").textContent = `${d.avail} seats`;
   document.getElementById("secPrice").textContent = `$${Number(d.price).toLocaleString()}`;
 
@@ -2532,12 +2685,38 @@ miniMap.addEventListener("click", e => {
   const x = ((e.clientX - rect.left) / rect.width) * 400;
   const y = ((e.clientY - rect.top) / rect.height) * 360;
 
+  scrollMapToPoint(x, y);
+});
+
+function scrollMapToPoint(x, y) {
+  const maxLeft = Math.max(0, mapScroll.scrollWidth - mapScroll.clientWidth);
+  const maxTop = Math.max(0, mapScroll.scrollHeight - mapScroll.clientHeight);
+  const left = (x / 400) * mapScroll.scrollWidth - mapScroll.clientWidth / 2;
+  const top = (y / 360) * mapScroll.scrollHeight - mapScroll.clientHeight / 2;
+
   mapScroll.scrollTo({
-    left: (x / 400) * mapScroll.scrollWidth - mapScroll.clientWidth / 2,
-    top: (y / 360) * mapScroll.scrollHeight - mapScroll.clientHeight / 2,
+    left: Math.max(0, Math.min(maxLeft, left)),
+    top: Math.max(0, Math.min(maxTop, top)),
     behavior: "smooth"
   });
-});
+}
+
+function jumpToSection(sectionCode) {
+  const sec = document.querySelector(`.sta-section[data-sec="${sectionCode}"]`);
+  if (!sec) return;
+
+  const box = sec.getBBox();
+  scrollMapToPoint(box.x + box.width / 2, box.y + box.height / 2);
+  selectSection(sec);
+}
+
+const locationJump = document.getElementById("locationJump");
+if (locationJump) {
+  locationJump.addEventListener("change", () => {
+    if (!locationJump.value) return;
+    jumpToSection(locationJump.value);
+  });
+}
 
 function showToast(message) {
   const toast = document.getElementById("toast");
