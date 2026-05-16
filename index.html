@@ -1430,6 +1430,276 @@ body.light-theme .order-total {
   }
 }
 
+.sponsor-footer {
+  background: linear-gradient(135deg, #031928, #081f36 65%);
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: 34px 24px 26px;
+  color: #f8fafc;
+}
+
+.sponsor-footer h2 {
+  margin: 0 0 18px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #f8fafc;
+}
+
+.sponsor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  align-items: center;
+}
+
+.sponsor-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  min-height: 110px;
+  box-shadow: 0 18px 35px rgba(0,0,0,.18);
+}
+
+.sponsor-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 42px;
+  padding: 0 12px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.sponsor-logo span {
+  display: inline-block;
+  transform: translateY(-1px);
+}
+
+.logo-adidas {
+  color: #000;
+  background: #fff;
+  border-radius: 14px;
+  font-size: 18px;
+  letter-spacing: .18em;
+  padding: 10px 14px;
+}
+
+.logo-cocacola {
+  color: #fff;
+  background: #ce1126;
+  border-radius: 999px;
+  font-size: 16px;
+  letter-spacing: .16em;
+  padding: 12px 16px;
+}
+
+.logo-lenovo {
+  color: #fff;
+  background: #e2231a;
+  border-radius: 12px;
+  font-size: 16px;
+  letter-spacing: .13em;
+  padding: 12px 16px;
+}
+
+.logo-qatarairways {
+  color: #7f1734;
+  background: #f8f3ef;
+  border-radius: 12px;
+  font-size: 15px;
+  letter-spacing: .14em;
+  padding: 12px 14px;
+}
+
+.logo-visa {
+  color: #1434cb;
+  background: #fff;
+  border-radius: 12px;
+  font-size: 18px;
+  letter-spacing: .1em;
+  padding: 10px 16px;
+  box-shadow: inset 0 0 0 1px rgba(20,52,203,.12);
+}
+
+.logo-bitcoin {
+  color: #f7931a;
+  background: #fff;
+  border-radius: 16px;
+  font-size: 18px;
+  letter-spacing: .13em;
+  padding: 10px 14px;
+}
+
+.sponsor-logo-img {
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+  object-fit: contain;
+  filter: none;
+  max-height: 48px;
+}
+
+.sponsor-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  min-height: 110px;
+  box-shadow: 0 18px 35px rgba(0,0,0,.18);
+}
+
+.sponsor-note {
+  margin-top: 22px;
+  text-align: center;
+  color: rgba(248,250,252,.72);
+  font-size: 13px;
+  letter-spacing: .4px;
+}
+
+@media (max-width: 720px) {
+  .sponsor-footer {
+    padding: 28px 16px 20px;
+  }
+  .sponsor-tile {
+    min-height: 100px;
+  }
+}
+
+.player-carousel-section {
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: 30px 24px 28px;
+}
+
+.player-carousel-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #f8fafc;
+  margin-bottom: 18px;
+}
+
+.player-carousel-title::before {
+  content: "⚽";
+  font-size: 22px;
+}
+
+.player-carousel-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.player-card {
+  flex: 0 0 220px;
+  min-width: 220px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  box-shadow: 0 16px 30px rgba(0,0,0,.18);
+  padding: 18px;
+  scroll-snap-align: start;
+}
+
+.player-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 36px rgba(0,0,0,.24);
+}
+
+.player-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.player-photo {
+  width: 100%;
+  border-radius: 18px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+}
+
+.player-flag {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  background: rgba(255,255,255,.12);
+  color:black;
+}
+
+.player-name {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.1;
+  color:black;
+}
+
+.player-country {
+  color: rgba(7, 7, 7, 0.72);
+  font-size: 13px;
+  letter-spacing: .25px;
+  margin-bottom: 12px;
+}
+
+.player-stats {
+  display: grid;
+  gap: 10px;
+}
+
+.player-stat {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(7, 7, 7, 0.82);
+  font-size: 13px;
+}
+
+.player-stat strong {
+  color: #050505;
+}
+
+body {
+  background-image: radial-gradient(circle at top left, rgba(255,255,255,.03), transparent 22%), repeating-linear-gradient(0deg, transparent 0, transparent 26px, rgba(255,255,255,.015) 26px, rgba(255,255,255,.015) 27px);
+}
+
+@media (max-width: 720px) {
+  .player-carousel-section {
+    padding: 24px 16px 22px;
+  }
+  .player-card {
+    min-width: 200px;
+  }
+}
+
 </style>
 </head>
 
@@ -1448,6 +1718,7 @@ body.light-theme .order-total {
 
 <div id="captchaOverlay" class="overlay hidden">
   <div class="captcha-box">
+    <img src="fwc26logo.png" alt="FWC 26" style="width:64px;margin:0 auto 12px;display:block">
     <div class="captcha-title">Prove If You Are Human</div>
     <div class="captcha-desc">Please answer a simple captcha question to continue to the ticket map.</div>
     <div class="captcha-question" id="captchaQuestion">What is 7 + 4?</div>
@@ -1490,7 +1761,7 @@ body.light-theme .order-total {
 </div>
 <header>
   <div class="logo">
-    <div class="logo-badge">FIFA<br>WC<br>26</div>
+    <div class="logo-badge"><img src="fwc26logo.png" alt="FWC 26" style="width:100%;height:100%;object-fit:contain;border-radius:6px"></div>
     <div>
       <div class="logo-text">TICKETS</div>
       <span class="logo-sub">Official Resale</span>
@@ -1798,6 +2069,124 @@ body.light-theme .order-total {
     </div>
   </div>
 </div>
+
+</div>
+
+<section class="player-carousel-section">
+  <div class="player-carousel-title">World Cup Icons</div>
+  <div class="player-carousel-track">
+    <article class="player-card">
+      <img class="player-photo" src="messi.jpg" alt="Lionel Messi">
+      <div class="player-card-top">
+        <div class="player-name">Lionel Messi</div>
+        <div class="player-flag">ARG</div>
+      </div>
+      <div class="player-country">Argentina</div>
+      <div class="player-stats">
+        <div class="player-stat"><span>Position</span><strong>Forward</strong></div>
+        <div class="player-stat"><span>Goals</span><strong>128</strong></div>
+        <div class="player-stat"><span>Caps</span><strong>172</strong></div>
+      </div>
+    </article>
+
+    <article class="player-card">
+      <img class="player-photo" src="neymah.jpg" alt="Neymar Jr.">
+      <div class="player-card-top">
+        <div class="player-name">Neymar Jr.</div>
+        <div class="player-flag">BRA</div>
+      </div>
+      <div class="player-country">Brazil</div>
+      <div class="player-stats">
+        <div class="player-stat"><span>Position</span><strong>Winger</strong></div>
+        <div class="player-stat"><span>Goals</span><strong>75</strong></div>
+        <div class="player-stat"><span>Assists</span><strong>54</strong></div>
+      </div>
+    </article>
+
+    <article class="player-card">
+      <img class="player-photo" src="kane.jpg" alt="Harry Kane">
+      <div class="player-card-top">
+        <div class="player-name">Harry Kane</div>
+        <div class="player-flag">ENG</div>
+      </div>
+      <div class="player-country">England</div>
+      <div class="player-stats">
+        <div class="player-stat"><span>Position</span><strong>Striker</strong></div>
+        <div class="player-stat"><span>Goals</span><strong>62</strong></div>
+        <div class="player-stat"><span>Shots</span><strong>214</strong></div>
+      </div>
+    </article>
+
+    <article class="player-card">
+      <img class="player-photo" src="kimmich.jpg" alt="Timo Werner">
+      <div class="player-card-top">
+        <div class="player-name">Joshua Kimmich</div>
+        <div class="player-flag">GER</div>
+      </div>
+      <div class="player-country">Germany</div>
+      <div class="player-stats">
+        <div class="player-stat"><span>Position</span><strong>Midfielder</strong></div>
+        <div class="player-stat"><span>Goals</span><strong>43</strong></div>
+        <div class="player-stat"><span>Speed</span><strong>34.2 km/h</strong></div>
+      </div>
+    </article>
+
+    <article class="player-card">
+      <img class="player-photo" src="mbappe.jpg" alt="Kylian Mbappé">
+      <div class="player-card-top">
+        <div class="player-name">Kylian Mbappé</div>
+        <div class="player-flag">FRA</div>
+      </div>
+      <div class="player-country">France</div>
+      <div class="player-stats">
+        <div class="player-stat"><span>Position</span><strong>Forward</strong></div>
+        <div class="player-stat"><span>Goals</span><strong>48</strong></div>
+        <div class="player-stat"><span>Assists</span><strong>29</strong></div>
+      </div>
+    </article>
+
+    <article class="player-card">
+      <img class="player-photo" src="rodri.jpg" alt="Rodri">
+      <div class="player-card-top">
+        <div class="player-name">Rodri</div>
+        <div class="player-flag">ESP</div>
+      </div>
+      <div class="player-country">Spain</div>
+      <div class="player-stats">
+        <div class="player-stat"><span>Position</span><strong>Midfield</strong></div>
+        <div class="player-stat"><span>Pass Rate</span><strong>91%</strong></div>
+        <div class="player-stat"><span>Tackles</span><strong>78</strong></div>
+      </div>
+    </article>
+
+    <article class="player-card">
+      <img class="player-photo" src="ronaldo.jpg" alt="Cristiano Ronaldo">
+      <div class="player-card-top">
+        <div class="player-name">Cristiano Ronaldo</div>
+        <div class="player-flag">POR</div>
+      </div>
+      <div class="player-country">Portugal</div>
+      <div class="player-stats">
+        <div class="player-stat"><span>Position</span><strong>Forward</strong></div>
+        <div class="player-stat"><span>Goals</span><strong>118</strong></div>
+        <div class="player-stat"><span>Caps</span><strong>196</strong></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer class="sponsor-footer">
+  <h2>Official FIFA World Cup 2026™ Sponsors</h2>
+  <div class="sponsor-grid">
+    <div class="sponsor-tile"><img class="sponsor-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg" alt="adidas"></div>
+    <div class="sponsor-tile"><img class="sponsor-logo-img" src="cocaco;a.png" alt="Coca-Cola"></div>
+    <div class="sponsor-tile"><img class="sponsor-logo-img" src="lenovo.png" alt="Lenovo"></div>
+    <div class="sponsor-tile"><img class="sponsor-logo-img" src="download.png" alt="Qatar Airways"></div>
+    <div class="sponsor-tile"><img class="sponsor-logo-img" src="visa.png" alt="Visa"></div>
+    <div class="sponsor-tile"><img class="sponsor-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin"></div>
+  </div>
+  <div class="sponsor-note">Proud partners of the official FIFA World Cup 2026™ resale experience. Elite brands, global reach and premium fan trust.</div>
+</footer>
 
 <div class="toast" id="toast"></div>
 
@@ -2157,22 +2546,35 @@ function showToast(message) {
   setTimeout(() => toast.classList.remove("show"), 2800);
 }
 
-const preloader = document.getElementById("preloader");
-const captchaOverlay = document.getElementById("captchaOverlay");
-const captchaQuestion = document.getElementById("captchaQuestion");
-const captchaAnswer = document.getElementById("captchaAnswer");
-const captchaSubmit = document.getElementById("captchaSubmit");
-const cookieBanner = document.getElementById("cookieBanner");
-const acceptCookiesBtn = document.getElementById("acceptCookiesBtn");
+let preloader, captchaOverlay, captchaQuestionEl, captchaAnswer, captchaSubmit, cookieBanner, acceptCookiesBtn;
+let captchaExpectedValue = null; // numeric expected answer for addition captcha
 
-const captchaChallenges = [
-  { q: "What is 7 + 4?", a: "11" },
-  { q: "What is 5 + 3?", a: "8" },
-  { q: "What is 9 + 6?", a: "15" },
-  { q: "What is 2 + 8?", a: "10" }
-];
-const captcha = captchaChallenges[Math.floor(Math.random() * captchaChallenges.length)];
-captchaQuestion.textContent = captcha.q;
+try {
+  preloader = document.getElementById("preloader");
+  captchaOverlay = document.getElementById("captchaOverlay");
+  captchaQuestionEl = document.getElementById("captchaQuestion");
+  captchaAnswer = document.getElementById("captchaAnswer");
+  captchaSubmit = document.getElementById("captchaSubmit");
+  cookieBanner = document.getElementById("cookieBanner");
+  acceptCookiesBtn = document.getElementById("acceptCookiesBtn");
+
+  if (!captchaQuestionEl || !captchaAnswer || !captchaSubmit || !captchaOverlay) {
+    console.warn('Captcha elements missing:', {captchaQuestionEl, captchaAnswer, captchaSubmit, captchaOverlay});
+  }
+} catch (err) {
+  console.error('Error initializing captcha elements', err);
+}
+
+function generateCaptcha() {
+  try {
+    const a = Math.floor(Math.random() * 9) + 2; // 2..10
+    const b = Math.floor(Math.random() * 9) + 2;
+    captchaExpectedValue = a + b;
+    if (captchaQuestionEl) captchaQuestionEl.textContent = `What is ${a} + ${b}?`;
+  } catch (err) {
+    console.error('generateCaptcha error', err);
+  }
+}
 
 function showCookieBanner() {
   if (!cookieBanner) return;
@@ -2184,11 +2586,13 @@ function hideCookieBanner() {
   cookieBanner.classList.remove("show");
 }
 
-acceptCookiesBtn.addEventListener("click", () => {
-  localStorage.setItem("cookieAccepted", "true");
-  hideCookieBanner();
-  showToast("Cookies accepted.");
-});
+if (acceptCookiesBtn) {
+  acceptCookiesBtn.addEventListener("click", () => {
+    localStorage.setItem("cookieAccepted", "true");
+    hideCookieBanner();
+    showToast("Cookies accepted.");
+  });
+}
 
 function ensureCookieConsent() {
   if (!localStorage.getItem("cookieAccepted")) {
@@ -2207,34 +2611,57 @@ function hideOverlay(el) {
 }
 
 function validateCaptcha() {
-  const answer = captchaAnswer.value.trim();
-  if (answer === captcha.a) {
-    hideOverlay(captchaOverlay);
-    showToast("Verification complete. Enjoy your ticket search!");
-    captchaAnswer.value = "";
-    return;
-  }
+  try {
+    if (!captchaAnswer) return showToast('Captcha not available');
+    const raw = captchaAnswer.value.trim().replace(/\s+/g, "");
+    const num = Number(raw);
+    if (!Number.isFinite(num)) {
+      showToast('Please enter a number.');
+      captchaAnswer.focus();
+      return;
+    }
 
-  showToast("Incorrect answer. Please try again.");
-  captchaAnswer.focus();
+    if (num === captchaExpectedValue) {
+      if (captchaOverlay) hideOverlay(captchaOverlay);
+      showToast("Verification complete. Enjoy your ticket search!");
+      captchaAnswer.value = "";
+      return;
+    }
+
+    showToast("Incorrect answer. Please try again.");
+    captchaAnswer.focus();
+  } catch (err) {
+    console.error('Captcha validation error', err);
+    showToast('Captcha error — check console');
+  }
 }
 
 window.addEventListener("load", () => {
   setTimeout(() => {
-    hideOverlay(preloader);
-    showOverlay(captchaOverlay);
-    captchaAnswer.focus();
+    if (preloader) hideOverlay(preloader);
+    generateCaptcha();
+    if (captchaOverlay) showOverlay(captchaOverlay);
+    if (captchaAnswer) captchaAnswer.focus();
     ensureCookieConsent();
   }, 600);
 });
 
-captchaSubmit.addEventListener("click", validateCaptcha);
-captchaAnswer.addEventListener("keydown", e => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    validateCaptcha();
-  }
-});
+if (captchaSubmit) {
+  captchaSubmit.addEventListener("click", validateCaptcha);
+} else {
+  console.warn('captchaSubmit button not found');
+}
+
+if (captchaAnswer) {
+  captchaAnswer.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      validateCaptcha();
+    }
+  });
+} else {
+  console.warn('captchaAnswer input not found');
+}
 
 // Theme toggle functionality
 const themeToggle = document.getElementById("themeToggle");
