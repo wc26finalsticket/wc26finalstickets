@@ -561,6 +561,7 @@ svg.stadium-map {
 .badge-cat1 { background: #e8f4fd; color: #0369a1; }
 .badge-cat2 { background: #f0fdf4; color: #15803d; }
 .badge-cat3 { background: #fefce8; color: #a16207; }
+.badge-cat4 { background: #f1f5f9; color: #475569; }
 
 .sec-detail-row {
   display: flex;
@@ -801,7 +802,7 @@ body.light-theme .main,
 body.light-theme .stadium-panel,
 body.light-theme .info-card,
 body.light-theme .minimap-card,
-body.light-theme .price-board {
+body.light-theme .specs-panel {
   background: #ffffff;
   border-color: #e2e8f0;
 }
@@ -1348,7 +1349,7 @@ body.light-theme .order-total {
   background: rgba(255, 255, 255, 0.15);
 }
 
-.price-board {
+.specs-panel {
   margin-top: 18px;
   border-radius: 14px;
   overflow: hidden;
@@ -1356,68 +1357,6 @@ body.light-theme .order-total {
   background: #202331;
   color: #f8fafc;
   box-shadow: 0 14px 35px rgba(0,0,0,.12);
-}
-
-.price-board-header {
-  padding: 22px 18px 16px;
-  background: linear-gradient(135deg, #202331, #111827);
-  text-align: center;
-  border-bottom: 1px solid rgba(200,151,58,.35);
-}
-
-.price-board-kicker {
-  color: var(--fifa-gold);
-  font-family: "Barlow Condensed", sans-serif;
-  font-weight: 900;
-  font-size: clamp(26px, 4vw, 42px);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-.price-board-sub {
-  margin-top: 8px;
-  color: rgba(255,255,255,.78);
-  font-size: 14px;
-}
-
-.price-table-wrap {
-  overflow-x: auto;
-}
-
-.price-table {
-  width: 100%;
-  min-width: 760px;
-  border-collapse: collapse;
-}
-
-.price-table th {
-  background: #050505;
-  color: #f8fafc;
-  text-align: left;
-  padding: 12px 14px;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: .4px;
-}
-
-.price-table td {
-  padding: 11px 14px;
-  border-bottom: 1px solid rgba(255,255,255,.04);
-  font-size: 14px;
-  color: rgba(255,255,255,.88);
-}
-
-.price-table tr:nth-child(even) td {
-  background: rgba(255,255,255,.035);
-}
-
-.price-table .money {
-  font-family: "Barlow Condensed", sans-serif;
-  font-size: 19px;
-  font-weight: 900;
-  color: #fff;
-  white-space: nowrap;
 }
 
 .specs {
@@ -1494,50 +1433,9 @@ body.light-theme .order-total {
   box-shadow: 0 0 0 3px rgba(200,151,58,.18);
 }
 
-.mini-price-stadium {
-  width: 140px;
-  height: 100px;
-  border-radius: 14px;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.1);
-  display: grid;
-  place-items: center;
-  color: rgba(255,255,255,.7);
-  font-size: 42px;
-}
-
-.price-board-footer {
-  border-top: 1px solid rgba(200,151,58,.35);
-  padding: 14px 18px 18px;
-  text-align: center;
-  color: rgba(255,255,255,.72);
-  font-size: 13px;
-  line-height: 1.45;
-}
-
 @media (max-width: 720px) {
   .specs {
     grid-template-columns: 1fr;
-  }
-
-  .mini-price-stadium {
-    width: 100%;
-  }
-
-  .price-table th,
-  .price-table td {
-    padding: 10px 12px;
-    font-size: 12px;
-  }
-
-  .price-table {
-    min-width: 0;
-    table-layout: fixed;
-  }
-
-  .price-table th,
-  .price-table td {
-    overflow-wrap: anywhere;
   }
 }
 
@@ -1961,35 +1859,22 @@ body {
               </defs>
               <ellipse cx="200" cy="180" rx="195" ry="175" fill="url(#stadBg)"/>
               <g id="sections">
-                <!-- Upper Tier Sections -->
-                <path class="sta-section" data-sec="U-N" data-cat="1" data-price="75000" data-avail="22" d="M108,28 L292,28 L270,65 L130,65 Z" fill="#1d4ed8"/><text class="section-label" x="200" y="46">U-N</text>
-                <path class="sta-section sold-out" data-sec="U-S" data-cat="1" data-price="45000" data-avail="0" d="M108,332 L292,332 L270,295 L130,295 Z" fill="#1d4ed8"/><text class="section-label" x="200" y="314">U-S</text>
-                <path class="sta-section" data-sec="U-E" data-cat="1" data-price="55000" data-avail="5" d="M372,108 L372,252 L338,232 L338,128 Z" fill="#1d4ed8"/><text class="section-label" x="355" y="180">U-E</text>
-                <path class="sta-section" data-sec="U-W" data-cat="1" data-price="30000" data-avail="14" d="M28,108 L28,252 L62,232 L62,128 Z" fill="#1d4ed8"/><text class="section-label" x="45" y="180">U-W</text>
-                <path class="sta-section sold-out" data-sec="U-NE" data-cat="1" data-price="65000" data-avail="0" d="M292,28 L372,108 L338,128 L270,65 Z" fill="#1d4ed8"/><text class="section-label" x="318" y="84">U-NE</text>
-                <path class="sta-section" data-sec="U-NW" data-cat="1" data-price="25000" data-avail="18" d="M108,28 L28,108 L62,128 L130,65 Z" fill="#1d4ed8"/><text class="section-label" x="82" y="84">U-NW</text>
-                <path class="sta-section" data-sec="U-SE" data-cat="1" data-price="50000" data-avail="10" d="M292,332 L372,252 L338,232 L270,295 Z" fill="#1d4ed8"/><text class="section-label" x="318" y="276">U-SE</text>
-                <path class="sta-section sold-out" data-sec="U-SW" data-cat="1" data-price="15000" data-avail="0" d="M108,332 L28,252 L62,232 L130,295 Z" fill="#1d4ed8"/><text class="section-label" x="82" y="276">U-SW</text>
-
-                <!-- Middle Tier Sections -->
-                <path class="sta-section" data-sec="M-N" data-cat="2" data-price="100000" data-avail="16" d="M130,65 L270,65 L252,98 L148,98 Z" fill="#15803d"/><text class="section-label" x="200" y="81">M-N</text>
-                <path class="sta-section sold-out" data-sec="M-S" data-cat="2" data-price="95000" data-avail="0" d="M130,295 L270,295 L252,262 L148,262 Z" fill="#15803d"/><text class="section-label" x="200" y="279">M-S</text>
-                <path class="sta-section" data-sec="M-E" data-cat="2" data-price="88000" data-avail="27" d="M338,128 L338,232 L308,218 L308,142 Z" fill="#15803d"/><text class="section-label" x="323" y="180">M-E</text>
-                <path class="sta-section sold-out" data-sec="M-W" data-cat="2" data-price="85000" data-avail="0" d="M62,128 L62,232 L92,218 L92,142 Z" fill="#15803d"/><text class="section-label" x="77" y="180">M-W</text>
-                <path class="sta-section" data-sec="M-NE" data-cat="2" data-price="92000" data-avail="6" d="M270,65 L338,128 L308,142 L252,98 Z" fill="#15803d"/><text class="section-label" x="292" y="108">M-NE</text>
-                <path class="sta-section sold-out" data-sec="M-NW" data-cat="2" data-price="90000" data-avail="0" d="M130,65 L62,128 L92,142 L148,98 Z" fill="#15803d"/><text class="section-label" x="108" y="108">M-NW</text>
-                <path class="sta-section" data-sec="M-SE" data-cat="2" data-price="87000" data-avail="8" d="M270,295 L338,232 L308,218 L252,262 Z" fill="#15803d"/><text class="section-label" x="292" y="252">M-SE</text>
-                <path class="sta-section" data-sec="M-SW" data-cat="2" data-price="82000" data-avail="4" d="M130,295 L62,232 L92,218 L148,262 Z" fill="#15803d"/><text class="section-label" x="108" y="252">M-SW</text>
-
-                <!-- Lower Tier Sections (Premium) -->
-                <path class="sta-section sold-out" data-sec="L-N" data-cat="3" data-price="207000" data-avail="0" d="M148,98 L252,98 L238,130 L162,130 Z" fill="#b45309"/><text class="section-label" x="200" y="113">L-N</text>
-                <path class="sta-section" data-sec="L-S" data-cat="3" data-price="195000" data-avail="5" d="M148,262 L252,262 L238,230 L162,230 Z" fill="#b45309"/><text class="section-label" x="200" y="247">L-S</text>
-                <path class="sta-section sold-out" data-sec="L-E" data-cat="3" data-price="1250000" data-avail="0" d="M308,142 L308,218 L278,207 L278,153 Z" fill="#b45309"/><text class="section-label" x="293" y="180">L-E</text>
-                <path class="sta-section" data-sec="L-W" data-cat="3" data-price="1542000" data-avail="6" d="M92,142 L92,218 L122,207 L122,153 Z" fill="#b45309"/><text class="section-label" x="107" y="180">L-W</text>
-                <path class="sta-section" data-sec="L-NE" data-cat="3" data-price="185000" data-avail="3" d="M252,98 L308,142 L278,153 L238,130 Z" fill="#b45309"/><text class="section-label" x="269" y="130">L-NE</text>
-                <path class="sta-section" data-sec="L-NW" data-cat="3" data-price="175000" data-avail="5" d="M148,98 L92,142 L122,153 L162,130 Z" fill="#b45309"/><text class="section-label" x="131" y="130">L-NW</text>
-                <path class="sta-section sold-out" data-sec="L-SE" data-cat="3" data-price="165000" data-avail="0" d="M252,262 L308,218 L278,207 L238,230 Z" fill="#b45309"/><text class="section-label" x="269" y="230">L-SE</text>
-                <path class="sta-section" data-sec="L-SW" data-cat="3" data-price="125000" data-avail="1" d="M148,262 L92,218 L122,207 L162,230 Z" fill="#b45309"/><text class="section-label" x="131" y="230">L-SW</text>
+                <!-- Official resale block listings -->
+                <path class="sta-section" data-sec="B124" data-cat="1" data-cat-label="Category 1" data-tier="Lower Tier" data-location="Premium Lower Behind Goal" data-seat-details="Block 124, Row 10, Seats 1-6" data-price="1542000" data-avail="6" d="M92,142 L92,218 L122,207 L122,153 Z" fill="#1d4ed8"/><text class="section-label" x="107" y="180">B124</text>
+                <path class="sta-section" data-sec="B113" data-cat="1" data-cat-label="Category 1" data-tier="Lower Tier" data-location="Premium Lower Midfield" data-seat-details="Block 113, Row 5, Seats 4-6" data-price="1250000" data-avail="3" d="M148,98 L252,98 L238,130 L162,130 Z" fill="#1d4ed8"/><text class="section-label" x="200" y="113">B113</text>
+                <path class="sta-section" data-sec="B146" data-cat="1" data-cat-label="Category 1" data-tier="Lower Tier" data-location="Easy Access Lower" data-seat-details="Block 146, Row 32, Seat 15" data-price="207000" data-avail="1" d="M308,142 L308,218 L278,207 L278,153 Z" fill="#1d4ed8"/><text class="section-label" x="293" y="180">B146</text>
+                <path class="sta-section" data-sec="B110" data-cat="1" data-cat-label="Category 1" data-tier="Lower Tier" data-location="Category 1 Lower" data-seat-details="Block 110, Row 15, Seats 8-10" data-price="185000" data-avail="3" d="M148,262 L252,262 L238,230 L162,230 Z" fill="#1d4ed8"/><text class="section-label" x="200" y="247">B110</text>
+                <path class="sta-section" data-sec="B138" data-cat="1" data-cat-label="Category 1" data-tier="Lower Tier" data-location="Category 1 Lower" data-seat-details="Block 138, Row 15, Seat 20" data-price="150000" data-avail="1" d="M252,98 L308,142 L278,153 L238,130 Z" fill="#1d4ed8"/><text class="section-label" x="269" y="130">B138</text>
+                <path class="sta-section" data-sec="B128" data-cat="1" data-cat-label="Category 1" data-tier="Lower Tier" data-location="Category 1 Lower" data-seat-details="Block 128, Row 22, Seat 22" data-price="125000" data-avail="1" d="M148,98 L92,142 L122,153 L162,130 Z" fill="#1d4ed8"/><text class="section-label" x="131" y="130">B128</text>
+                <path class="sta-section" data-sec="B104" data-cat="2" data-cat-label="Category 2" data-tier="Lower Tier" data-location="Category 2 Lower" data-seat-details="Block 104, Row 30, Seat 30" data-price="100000" data-avail="1" d="M130,65 L270,65 L252,98 L148,98 Z" fill="#15803d"/><text class="section-label" x="200" y="81">B104</text>
+                <path class="sta-section" data-sec="B144" data-cat="2" data-cat-label="Category 2" data-tier="Lower Tier" data-location="Category 2 Lower" data-seat-details="Block 144, Row 35, Seat 35" data-price="95000" data-avail="1" d="M270,65 L338,128 L308,142 L252,98 Z" fill="#15803d"/><text class="section-label" x="292" y="108">B144</text>
+                <path class="sta-section" data-sec="B313" data-cat="1" data-cat-label="Category 1 Upper" data-tier="Upper Tier" data-location="Category 1 Upper" data-seat-details="Block 313, Row 5, Seat 22" data-price="75000" data-avail="1" d="M108,28 L292,28 L270,65 L130,65 Z" fill="#1d4ed8"/><text class="section-label" x="200" y="46">B313</text>
+                <path class="sta-section" data-sec="B338" data-cat="1" data-cat-label="Category 1 Upper" data-tier="Upper Tier" data-location="Category 2 Upper" data-seat-details="Block 338, Row 5, Seat 5" data-price="55000" data-avail="1" d="M372,108 L372,252 L338,232 L338,128 Z" fill="#1d4ed8"/><text class="section-label" x="355" y="180">B338</text>
+                <path class="sta-section" data-sec="B310" data-cat="2" data-cat-label="Category 2" data-tier="Upper Tier" data-location="Category 3 Upper" data-seat-details="Block 310, Row 12, Seat 12" data-price="45000" data-avail="1" d="M292,28 L372,108 L338,128 L270,65 Z" fill="#15803d"/><text class="section-label" x="318" y="84">B310</text>
+                <path class="sta-section" data-sec="B301" data-cat="3" data-cat-label="Category 3" data-tier="Upper Tier" data-location="Category 3 Upper" data-seat-details="Block 301, Row 5, Seat 12" data-price="30000" data-avail="1" d="M28,108 L28,252 L62,232 L62,128 Z" fill="#b45309"/><text class="section-label" x="45" y="180">B301</text>
+                <path class="sta-section" data-sec="B325" data-cat="3" data-cat-label="Category 3" data-tier="Upper Tier" data-location="Category 3 Upper" data-seat-details="Block 325, Row 8, Seat 18" data-price="25000" data-avail="1" d="M108,28 L28,108 L62,128 L130,65 Z" fill="#b45309"/><text class="section-label" x="82" y="84">B325</text>
+                <path class="sta-section" data-sec="B346" data-cat="4" data-cat-label="Category 4" data-tier="Upper Tier" data-location="Category 4 Upper" data-seat-details="Block 346, Row 25, Seat 25" data-price="18500" data-avail="1" d="M292,332 L372,252 L338,232 L270,295 Z" fill="#64748b"/><text class="section-label" x="318" y="276">B346</text>
+                <path class="sta-section" data-sec="B331" data-cat="4" data-cat-label="Category 4" data-tier="Upper Tier" data-location="Category 4 Upper" data-seat-details="Block 331, Row 5, Seat 30" data-price="15000" data-avail="1" d="M108,332 L28,252 L62,232 L130,295 Z" fill="#64748b"/><text class="section-label" x="82" y="276">B331</text>
               </g>
 
               <rect class="pitch-outer" x="158" y="128" width="84" height="104" rx="4"/>
@@ -2023,7 +1908,7 @@ body {
         <div class="legend-item"><span class="legend-dot" style="background:#1d4ed8"></span>Cat 1</div>
         <div class="legend-item"><span class="legend-dot" style="background:#15803d"></span>Cat 2</div>
         <div class="legend-item"><span class="legend-dot" style="background:#b45309"></span>Cat 3</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#cdd3db"></span>Sold Out</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#64748b"></span>Cat 4</div>
         <div class="legend-item"><span class="legend-dot" style="background:var(--fifa-gold)"></span>Selected</div>
       </div>
     </div>
@@ -2032,47 +1917,13 @@ body {
       <span style="font-size:12px;color:var(--text-muted);align-self:center;font-weight:800">FILTER:</span>
       <button class="cat-btn cat-all active" data-filter="all">All Sections</button>
       <button class="cat-btn cat-available" data-filter="available">Available Seats</button>
-      <button class="cat-btn cat-1" data-filter="1">Cat 1 – from $75,000</button>
+      <button class="cat-btn cat-1" data-filter="1">Cat 1 – from $55,000</button>
       <button class="cat-btn cat-2" data-filter="2">Cat 2 – from $45,000</button>
-      <button class="cat-btn cat-3" data-filter="3">Cat 3/4 – from $15,000</button>
+      <button class="cat-btn cat-3" data-filter="3">Cat 3 – from $25,000</button>
+      <button class="cat-btn cat-4" data-filter="4">Cat 4 – from $15,000</button>
     </div>
 
-    <!--<section class="price-board">
-      <div class="price-board-header">
-        <div class="price-board-kicker">Final – Official Resale Marketplace</div>
-        <div class="price-board-sub">Match 104 · July 19, 2026 · MetLife Stadium, NY/NJ · Prices in USD</div>
-      </div>
-
-      <div class="price-table-wrap">
-        <table class="price-table">
-          <thead>
-            <tr>
-              <th>Ticket Type / Location</th>
-              <th>Seat Details</th>
-              <th>Category</th>
-              <th>Price per Ticket</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Premium Lower Behind Goal</td><td>Block 124, Row 10, Seats 1–6</td><td>Category 1</td><td class="money">$1,542,000</td></tr>
-            <tr><td>Premium Lower Midfield</td><td>Block 113, Row 5, Seats 4–6</td><td>Category 1</td><td class="money">$1,250,000</td></tr>
-            <tr><td>Easy Access Lower</td><td>Block 146, Row 32, Seat 15</td><td>Category 1</td><td class="money">$207,000</td></tr>
-            <tr><td>Category 1 Lower</td><td>Block 110, Row 15, Seats 8–10</td><td>Category 1</td><td class="money">$185,000</td></tr>
-            <tr><td>Category 1 Lower</td><td>Block 138, Row 15, Seat 20</td><td>Category 1</td><td class="money">$150,000</td></tr>
-            <tr><td>Category 1 Lower</td><td>Block 128, Row 22, Seat 22</td><td>Category 1</td><td class="money">$125,000</td></tr>
-            <tr><td>Category 2 Lower</td><td>Block 104, Row 30, Seat 30</td><td>Category 2</td><td class="money">$100,000</td></tr>
-            <tr><td>Category 2 Lower</td><td>Block 144, Row 35, Seat 35</td><td>Category 2</td><td class="money">$95,000</td></tr>
-            <tr><td>Category 1 Upper</td><td>Block 313, Row 5, Seat 22</td><td>Category 1 Upper</td><td class="money">$75,000</td></tr>
-            <tr><td>Category 2 Upper</td><td>Block 338, Row 5, Seat 5</td><td>Category 1 Upper</td><td class="money">$55,000</td></tr>
-            <tr><td>Category 3 Upper</td><td>Block 310, Row 12, Seat 12</td><td>Category 2</td><td class="money">$45,000</td></tr>
-            <tr><td>Category 3 Upper</td><td>Block 301, Row 5, Seat 12</td><td>Category 3</td><td class="money">$30,000</td></tr>
-            <tr><td>Category 3 Upper</td><td>Block 325, Row 8, Seat 18</td><td>Category 3</td><td class="money">$25,000</td></tr>
-            <tr><td>Category 4 Upper</td><td>Block 346, Row 25, Seat 25</td><td>Category 4</td><td class="money">$18,500</td></tr>
-            <tr><td>Category 4 Upper</td><td>Block 331, Row 5, Seat 30</td><td>Category 4</td><td class="money">$15,000</td></tr>
-          </tbody>
-        </table>
-      </div>-->
-
+    <section class="specs-panel">
       <div class="specs">
         <div>
           <div class="spec-title">Listing Specifications</div>
@@ -2082,35 +1933,24 @@ body {
               <label for="locationJump"><strong>Location:</strong> Pick a stadium section</label>
               <select id="locationJump" aria-label="Jump to a stadium section">
                 <option value="">Select location on map</option>
-                <optgroup label="Upper Tier">
-                  <option value="U-N">Upper North</option>
-                  <option value="U-NE">Upper Northeast</option>
-                  <option value="U-E">Upper East</option>
-                  <option value="U-SE">Upper Southeast</option>
-                  <option value="U-S">Upper South</option>
-                  <option value="U-SW">Upper Southwest</option>
-                  <option value="U-W">Upper West</option>
-                  <option value="U-NW">Upper Northwest</option>
-                </optgroup>
-                <optgroup label="Middle Tier">
-                  <option value="M-N">Middle North</option>
-                  <option value="M-NE">Middle Northeast</option>
-                  <option value="M-E">Middle East</option>
-                  <option value="M-SE">Middle Southeast</option>
-                  <option value="M-S">Middle South</option>
-                  <option value="M-SW">Middle Southwest</option>
-                  <option value="M-W">Middle West</option>
-                  <option value="M-NW">Middle Northwest</option>
-                </optgroup>
                 <optgroup label="Lower Tier">
-                  <option value="L-N">Lower North</option>
-                  <option value="L-NE">Lower Northeast</option>
-                  <option value="L-E">Lower East</option>
-                  <option value="L-SE">Lower Southeast</option>
-                  <option value="L-S">Lower South</option>
-                  <option value="L-SW">Lower Southwest</option>
-                  <option value="L-W">Lower West</option>
-                  <option value="L-NW">Lower Northwest</option>
+                  <option value="B124">Block 124 - Row 10 - Seats 1-6</option>
+                  <option value="B113">Block 113 - Row 5 - Seats 4-6</option>
+                  <option value="B146">Block 146 - Row 32 - Seat 15</option>
+                  <option value="B110">Block 110 - Row 15 - Seats 8-10</option>
+                  <option value="B138">Block 138 - Row 15 - Seat 20</option>
+                  <option value="B128">Block 128 - Row 22 - Seat 22</option>
+                  <option value="B104">Block 104 - Row 30 - Seat 30</option>
+                  <option value="B144">Block 144 - Row 35 - Seat 35</option>
+                </optgroup>
+                <optgroup label="Upper Tier">
+                  <option value="B313">Block 313 - Row 5 - Seat 22</option>
+                  <option value="B338">Block 338 - Row 5 - Seat 5</option>
+                  <option value="B310">Block 310 - Row 12 - Seat 12</option>
+                  <option value="B301">Block 301 - Row 5 - Seat 12</option>
+                  <option value="B325">Block 325 - Row 8 - Seat 18</option>
+                  <option value="B346">Block 346 - Row 25 - Seat 25</option>
+                  <option value="B331">Block 331 - Row 5 - Seat 30</option>
                 </optgroup>
               </select>
             </div>
@@ -2119,12 +1959,8 @@ body {
             <div><strong>Verification:</strong> Prices are set by individual sellers and verified before checkout.</div>
           </div>
         </div>
-        <div class="mini-price-stadium">🏟️</div>
       </div>
 
-      <div class="price-board-footer">
-        All prices are subject to change in real time. Select a section above to add seats to your order summary.
-      </div>
     </section>
 
   </div>
@@ -2347,7 +2183,7 @@ let zoom = 1;
 
 const timerEl = document.getElementById("timerDisplay");
 const tierMap = { U: "Upper Tier", M: "Middle Tier", L: "Lower Tier (Pitch-side)" };
-const catNameMap = { 1: "Category 1", 2: "Category 2", 3: "Category 3" };
+const catNameMap = { 1: "Category 1", 2: "Category 2", 3: "Category 3", 4: "Category 4" };
 const locNameMap = { N: "North", S: "South", E: "East", W: "West", NE: "Northeast", NW: "Northwest", SE: "Southeast", SW: "Southwest" };
 
 setInterval(() => {
@@ -2367,7 +2203,7 @@ document.querySelectorAll(".sta-section").forEach(sec => {
     const avail = Number(sec.dataset.avail);
     tooltip.textContent = avail === 0
       ? `${sec.dataset.sec} – SOLD OUT`
-      : `${sec.dataset.sec} · $${sec.dataset.price} · ${avail} left`;
+      : `${sec.dataset.sec} · $${Number(sec.dataset.price).toLocaleString()} · ${avail} left`;
     tooltip.style.display = "block";
   });
 
@@ -2391,7 +2227,7 @@ function selectSection(sec) {
 
   document.querySelectorAll(".sta-section.selected").forEach(s => s.classList.remove("selected"));
   sec.classList.add("selected");
-  selectedSection = sec.dataset;
+  selectedSection = { ...sec.dataset };
   const locationJump = document.getElementById("locationJump");
   if (locationJump) locationJump.value = sec.dataset.sec;
   qty = 1;
@@ -2404,17 +2240,20 @@ function renderSectionDetail(d) {
   document.getElementById("sectionDetail").classList.add("visible");
 
   const tier = d.sec.split("-")[0];
+  const catLabel = d.catLabel || catNameMap[d.cat];
 
   document.getElementById("secName").textContent = `Section ${d.sec}`;
-  document.getElementById("secCat").textContent = catNameMap[d.cat];
-  document.getElementById("secTier").textContent = tierMap[tier];
+  document.getElementById("secCat").textContent = catLabel;
+  document.getElementById("secTier").textContent = d.tier || tierMap[tier] || "Stadium Tier";
   const locationKey = d.sec.split("-")[1] || "";
-  document.getElementById("secLocation").textContent = locNameMap[locationKey] || locationKey || "Center";
+  document.getElementById("secLocation").textContent = d.seatDetails
+    ? `${d.location} - ${d.seatDetails}`
+    : locNameMap[locationKey] || locationKey || "Center";
   document.getElementById("secAvail").textContent = `${d.avail} seats`;
   document.getElementById("secPrice").textContent = `$${Number(d.price).toLocaleString()}`;
 
   const badge = document.getElementById("secCatBadge");
-  badge.textContent = catNameMap[d.cat];
+  badge.textContent = catLabel;
   badge.className = `sec-cat-badge badge-cat${d.cat}`;
 }
 
